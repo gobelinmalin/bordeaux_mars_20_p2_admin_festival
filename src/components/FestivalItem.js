@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './FestivalItem.css';
+import ButtonUpdate from './ButtonUpdate';
+import ButtonDelete from './ButtonDelete';
 
 class FestivalItem extends React.Component {
     constructor(props) {
@@ -11,25 +14,27 @@ class FestivalItem extends React.Component {
 
     render() {
         return (
-            <div className="FestCard">
-                <div className="FestInfoUp">
-                    <div className="">
-                        <div className="FestTitle">
-                            <h3>{this.props.name}</h3><p>{`(id : ${this.props.idfestival})`}</p>
+            <div className="container">
+                <div className="FestCard">
+                    <div className="FestInfoUp">
+                        <div className="col-md-8">
+                            <div className="FestTitle">
+                                <h3>{this.props.name} <span className="idfestival">{`(id : ${this.props.idfestival})`}</span></h3>
+                            </div>
+                            <div className="FestInfo">
+                                <p>{`Du ${this.props.datetime}`}   {this.props.city} {this.props.country}</p>
+                            </div>
                         </div>
-                        <div className="FestInfo">
-                            <p>{`Du ${this.props.datetime}`}   {this.props.city} {this.props.country}</p>
+                        <div className="buttons col-md-8">
+                            <ButtonUpdate />
+                            <ButtonDelete />
                         </div>
                     </div>
-                    <div className="buttons">
-                        <button>Modifier</button>
-                        <button>Supprimer</button>
+                    <div className="FestDescription col-md-12">
+                        <p>
+                            {this.props.description}
+                        </p>
                     </div>
-                </div>
-                <div className="FestDescription">
-                    <p>
-                        {this.props.description}
-                    </p>
                 </div>
             </div>
         )

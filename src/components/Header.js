@@ -8,14 +8,11 @@ function Header() {
             <header>
                 <nav className="navbar navbar-expand-md navbar-light">
                     <div className="container">
-                        <a href="index.html" className="navbar-brand"><img src={festit} className="img-brand" alt="Fest It"/></a>
+                        <div className="navbar-brand">
+                            <a href="index.html"><img src={festit} className="img-brand" alt="Fest It"/></a>
+                        </div>
                         <div className="brand-interface">
                             Interface Administration
-                        </div>
-                        <div>
-                            <button className="navbar-toggler burger-button" data-toggle="collapse" data-target="#navbarMenu">
-                                <span className="navbar-toggler-icon"></span>
-                            </button>
                         </div>
                     </div>
                 </nav>

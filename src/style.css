@@ -14,20 +14,26 @@ h2 {
     font-weight: 700;
 }
 
-
 .container-fluid {
     margin: 0px !important;
     padding: 0px !important;
+    background-color: #EDEEF3;
+}
+
+.ContainerBody {
+    background-color: #fff;
+    box-shadow: 0px 0px 5px rgb(145, 144, 144);
+    padding: 20px 0px;
 }
 
 /* HEADER */
 
 .navbar {
-    margin: 0px auto 20px auto;
     padding: 20px 0px;
     box-shadow: 0px 2px 5px rgb(145, 144, 144);
     display: flex;
     justify-content: left !important;
+    background-color: #fff;
 }
 
 .navbar .container {
@@ -43,10 +49,57 @@ h2 {
 }
 
 @media screen and (max-width: 770px) {
-    .brand-interface {
-        display: none;
+    .navbar-brand {
+        display: none !important;
     }
     .navbar .container {
-        justify-content: space-between !important;
+        justify-content: center !important;
     }
+}
+
+/* BUTTONS */
+
+.CenteredItem {
+    text-align: center;
+}
+
+.ButtonAddFest {
+    text-align: center;
+    background-color: #9185BE;
+    color: #fff;
+    margin: 50px 0px;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 10px;
+}
+
+.ButtonAddFest:hover {
+    background-color: rgb(114, 100, 165);
+}
+
+.ButtonUpdate {
+    text-align: center;
+    background-color: #F1B155;
+    color: #fff;
+    margin-right: 15px;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 10px;
+}
+
+.ButtonUpdate:hover {
+    background-color: rgb(207, 146, 60);
+}
+
+.ButtonDelete {
+    text-align: center;
+    background-color: #E44F55;
+    color: #fff;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 10px;
+}
+
+.ButtonDelete:hover {
+    background-color: rgb(190, 52, 57);
 }
