@@ -3,7 +3,7 @@ body {
     overflow-x: hidden;
     font-family: 'Comfortaa', Arial, Helvetica, sans-serif;
     --bg-color: #E3FDFF;
-    --nav: #64C7E6;
+    --nav: #FFF;
     --button: #F4BA19;
     --button-hover: #C59205;
     --bkg-footer:#434343;
@@ -14,28 +14,10 @@ h2 {
     font-weight: 700;
 }
 
+
 .container-fluid {
-    margin: 0px;
-    padding: 0px;
-}
-
-.container-md {
-    width: 500px;
-    margin: auto;
-}
-
-.btn-primary {
-    background-color: var(--button);
-    border: 1px solid rgb(244, 156, 25);
-    padding: 10px;
-    margin: 20px 0px;
-    width: 250px;
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
-}
-
-.btn-primary:hover {
-    background-color: var(--button-hover);
-    border: 1px solid rgb(244, 156, 25);
+    margin: 0px !important;
+    padding: 0px !important;
 }
 
 /* HEADER */
@@ -43,37 +25,28 @@ h2 {
 .navbar {
     margin: 0px auto 20px auto;
     padding: 20px 0px;
+    box-shadow: 0px 2px 5px rgb(145, 144, 144);
+    display: flex;
+    justify-content: left !important;
 }
 
-.bg-blue {
-    background-color: var(--nav);
+.navbar .container {
+    justify-content: left !important;
 }
 
 .img-brand {
-    width: 200px !important;
+    width: 50px;
 }
 
-.searchbar {
-    display: flex;
-    justify-content: start;
+.brand-interface {
+    font-size: 1.5rem;
 }
 
-.btn-header {
-    background-color: var(--button);
-    border: 1px solid rgb(244, 156, 25);
-    padding: 10px;
-    margin: 0px;
-    width: 250px;
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
-    color: #fff;
-}
-
-.btn-header:hover {
-    background-color: var(--button-hover);
-    border: 1px solid rgb(244, 156, 25);
-    color: #fff;
-}
-
-a.nav-link {
-    color: #fff !important;
+@media screen and (max-width: 770px) {
+    .brand-interface {
+        display: none;
+    }
+    .navbar .container {
+        justify-content: space-between !important;
+    }
 }
