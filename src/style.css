@@ -32,13 +32,9 @@ h2 {
     padding: 20px 0px;
 }
 
-a.navbar-brand, a.img-brand {
+.navbar-brand a {
     text-decoration: none;
     color: #000;
-}
-
-a:hover {
-    text-decoration: none;
 }
 
 /* HEADER */
@@ -61,6 +57,12 @@ a:hover {
 
 .brand-interface {
     font-size: 1.5rem;
+    color: #000;
+}
+
+.brand-interface:hover {
+    text-decoration: none;
+    color: #000;
 }
 
 @media screen and (max-width: 770px) {

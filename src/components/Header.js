@@ -11,8 +11,8 @@ function Header() {
                     <div className="navbar-brand">
                         <Link to="/"><img src={festit} className="img-brand" alt="Fest It"/></Link>
                     </div>
-                    <div className="brand-interface">
-                        <Link to="/">Interface Administration</Link>
+                    <div>
+                        <Link to="/" className="brand-interface">Interface Administration</Link>
                     </div>
                 </div>
             </nav>
