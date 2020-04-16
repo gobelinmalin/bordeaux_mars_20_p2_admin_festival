@@ -115,3 +115,10 @@ h2 {
     border-radius: 10px;
     font-size: 1rem;
 }
+
+/* IMAGE */
+
+.img-round {
+    width: 70px;
+    border-radius: 50%;
+}

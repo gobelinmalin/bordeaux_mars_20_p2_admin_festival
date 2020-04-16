@@ -13,11 +13,12 @@ function AddFestival() {
                 <div className="CenteredItem">
                     <Link to="/"><ButtonReturn /></Link>
                 </div>
-                <ButtonAddArtists />
+                <Link to="/artists"><ButtonAddArtists /></Link>
                 <ButtonAddAccomodations />
                 <ButtonAddEvent />
             </div>
         </div>
+        
     );
 }
 
