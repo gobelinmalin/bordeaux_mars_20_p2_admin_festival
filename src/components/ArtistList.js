@@ -23,7 +23,7 @@ class ArtistList extends React.Component {
     render() {
         return (
             <div>
-                <div className="CenteredItem">
+                <div className="AddFestival col-md-2 offset-md-5">
                 <Link to="/add-event"><ButtonAddFest /></Link>
                 </div>
                 <div className="ArtistList container">
