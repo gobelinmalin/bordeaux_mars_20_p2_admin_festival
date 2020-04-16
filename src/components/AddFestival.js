@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 function AddFestival() {
     return (
         <div>
-            <div className="AddFestival col-md-2 offset-md-5">
+            <div className="AddFestival col-sm-4 offset-sm-4">
                 <div className="CenteredItem">
                     <Link to="/"><ButtonReturn /></Link>
                 </div>

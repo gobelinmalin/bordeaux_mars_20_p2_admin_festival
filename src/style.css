@@ -32,6 +32,15 @@ h2 {
     padding: 20px 0px;
 }
 
+a.navbar-brand, a.img-brand {
+    text-decoration: none;
+    color: #000;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
 /* HEADER */
 
 .navbar {
@@ -117,9 +126,25 @@ h2 {
     font-size: 1rem;
 }
 
+.Action {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 50px;
+}
+
 /* IMAGE */
 
 .img-round {
     width: 70px;
     border-radius: 50%;
+}
+
+@media screen and (max-width: 992px) {
+    .FestInfoUp {
+        flex-direction: column !important;
+        margin-bottom: 15px;
+    }
+    
 }
