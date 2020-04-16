@@ -1,7 +1,8 @@
 import React from 'react';
 import '../style.css';
 import FestivalItem from './FestivalItem';
-import ButtonAddFest from './ButtonAddFest';
+import ButtonAddFest from './Buttons/ButtonAddFest';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -21,7 +22,7 @@ class FestivalList extends React.Component {
         return (
             <div>
                 <div className="CenteredItem">
-                <ButtonAddFest />
+                <Link to="/add-event"><ButtonAddFest /></Link>
                 </div>
                 <div id="list" className="container ContainerBody">
                     {this.state.festival.map((item, index) =>

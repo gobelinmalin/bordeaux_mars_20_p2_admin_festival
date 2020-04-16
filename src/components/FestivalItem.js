@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './FestivalItem.css';
-import ButtonUpdate from './ButtonUpdate';
-import ButtonDelete from './ButtonDelete';
+import ButtonUpdate from './Buttons/ButtonUpdate';
+import ButtonDelete from './Buttons/ButtonDelete';
 
 class FestivalItem extends React.Component {
     constructor(props) {

@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
 import { Route, Switch } from 'react-router-dom';
 import FestivalList from './components/FestivalList';
+import AddFestival from './components/AddFestival';
 
 function App() {
   return (
@@ -12,6 +13,9 @@ function App() {
       <Header />
       <Switch>
         <Route exact path="/" component={FestivalList} />
+      </Switch>
+      <Switch>
+        <Route exact path="/add-event" component={AddFestival} />
       </Switch>
     </div>
     
