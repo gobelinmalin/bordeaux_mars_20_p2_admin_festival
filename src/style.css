@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+html {
+    background-color: #EDEEF3;
+}
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+    font-family: 'Poppins', 'Comfortaa', Arial, Helvetica, sans-serif;
+    --bg-color: #E3FDFF;
+    --nav: #FFF;
+    --button: #F4BA19;
+    --button-hover: #C59205;
+    --bkg-footer:#434343;
+}
+
+h2 {
+    text-align: center;
+    font-weight: 700;
+}
+
+.container-fluid {
+    margin: 0px !important;
+    padding: 0px !important;
+    background-color: #EDEEF3;
+}
+
+.ContainerBody {
+    background-color: #fff;
+    box-shadow: 0px 0px 5px rgb(145, 144, 144);
+    padding: 20px 0px;
+}
+
+.navbar-brand a {
+    text-decoration: none;
+    color: #000;
+}
+
+/* HEADER */
+
+.navbar {
+    padding: 20px 0px;
+    box-shadow: 0px 2px 5px rgb(145, 144, 144);
+    display: flex;
+    justify-content: left !important;
+    background-color: #fff;
+}
+
+.navbar .container {
+    justify-content: left !important;
+}
+
+.img-brand {
+    width: 50px;
+}
+
+.brand-interface {
+    font-size: 1.5rem;
+    color: #000;
+}
+
+.brand-interface:hover {
+    text-decoration: none;
+    color: #000;
+}
+
+@media screen and (max-width: 770px) {
+    .navbar .container {
+        justify-content: center !important;
+    }
+}
+
+/* BUTTONS */
+
+.ButtonAddFest {
+    text-align: center;
+    background-color: #9185BE;
+    color: #fff;
+    margin: 50px 0px;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.ButtonAddFest:hover {
+    background-color: rgb(114, 100, 165);
+}
+
+.ButtonUpdate {
+    text-align: center;
+    background-color: #F1B155;
+    color: #fff;
+    margin-right: 15px;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 10px;
+}
+
+.ButtonUpdate:hover {
+    background-color: rgb(207, 146, 60);
+}
+
+.ButtonDelete {
+    text-align: center;
+    background-color: #E44F55;
+    color: #fff;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 10px;
+}
+
+.ButtonDelete:hover {
+    background-color: rgb(190, 52, 57);
+}
+
+.ButtonReturn {
+    text-align: center;
+    background-color: #E2E2E2;
+    color: grey;
+    padding: 5px 15px;
+    border: 1px solid grey;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+.Action {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+/* IMAGE */
+
+.img-round {
+    width: 70px;
+    border-radius: 50%;
+}
+
+@media screen and (max-width: 992px) {
+    .FestInfoUp {
+        flex-direction: column !important;
+        margin-bottom: 15px;
+    }
+    
+}
