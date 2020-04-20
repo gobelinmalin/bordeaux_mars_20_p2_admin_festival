@@ -12,7 +12,6 @@ class AddArtistForm extends React.Component {
             image_url: '',
             music_url: '',
             description: '',
-            url_video: '',
             country: '',
             id_style: '',
             embed_video: ''
@@ -63,7 +62,7 @@ class AddArtistForm extends React.Component {
                                 />
                             </div>
                             <div className="form-group col-md-6">
-                                <label htmlFor="datetime">Pays</label>
+                                <label htmlFor="country">Pays</label>
                                 <input
                                 type="text"
                                 className="form-control"
@@ -122,6 +121,7 @@ class AddArtistForm extends React.Component {
                             className="form-control"
                             id="description"
                             rows="4"
+                            type="text"
                             onChange={this.onChange}
                             value={this.state.value}
                             >
