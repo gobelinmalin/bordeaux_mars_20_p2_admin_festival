@@ -1,7 +1,7 @@
 import React from 'react';
 import '../style.css';
 import './ArtistList.css';
-import ButtonAddFest from './Buttons/ButtonAddFest';
+import ButtonAddArtist from './Buttons/ButtonAddArtist';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import ArtisItem from './ArtistItem';
@@ -24,7 +24,7 @@ class ArtistList extends React.Component {
         return (
             <div>
                 <div className="Action col-12">
-                <Link to="/add-festival"><ButtonAddFest /></Link>
+                <Link to="/add-artist"><ButtonAddArtist /></Link>
                 </div>
                 <div className="ArtistList container">
                     <h3>Liste des artistes du festival</h3>
