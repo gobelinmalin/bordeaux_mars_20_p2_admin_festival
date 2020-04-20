@@ -7,6 +7,7 @@ import { Route, Switch } from 'react-router-dom';
 import FestivalList from './components/FestivalList';
 import AddFestival from './components/AddFestival';
 import ArtistList from './components/ArtistList';
+import AddEventForm from './components/AddEventForm';
 
 function App() {
   return (
@@ -16,10 +17,13 @@ function App() {
         <Route exact path="/" component={FestivalList} />
       </Switch>
       <Switch>
-        <Route path="/add-event" component={AddFestival} />
+        <Route path="/add-festival" component={AddFestival} />
       </Switch>
       <Switch>
           <Route path="/artists" component={ArtistList} />
+      </Switch>
+      <Switch>
+          <Route path="/add-event" component={AddEventForm} />
       </Switch>
     </div>
     
