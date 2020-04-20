@@ -25,7 +25,7 @@ class ArtistItem extends React.Component {
                                 <h3>{this.props.name} <span className="idfestival">{`(id : ${this.props.idartist})`}</span></h3>
                             </div>
                             <div className="FestInfo">
-                                <p>Genre, Country</p>
+                                <p>Genre, {this.props.country}</p>
                             </div>
                         </div>
                         <div className="buttons col-md-8">

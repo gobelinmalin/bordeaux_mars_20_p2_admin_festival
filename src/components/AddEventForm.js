@@ -42,8 +42,6 @@ class AddEventForm extends React.Component {
     }
 
     render() {
-        console.log(this.state);
-        
         return (
             <div>
                 <div className="container AddEvent">
