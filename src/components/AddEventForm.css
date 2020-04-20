@@ -1,0 +1,27 @@
+.AddEvent {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px;
+    margin-top: 50px;
+}
+
+.title {
+    font-size: 1.5rem;
+}
+
+.mandatory {
+    font-size: 1rem;
+    font-style: italic;
+    color: red;
+}
+
+.ButtonAddEvent {
+    text-align: center;
+    background-color: #9185BE;
+    color: #fff;
+    margin: 20px 0px;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+}
