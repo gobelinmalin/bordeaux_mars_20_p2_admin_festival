@@ -10,6 +10,7 @@ class AddArtistForm extends React.Component {
         this.state = {
             name: '',
             image_url: '',
+            tracker_count: 0,
             music_url: '',
             description: '',
             country: '',
@@ -32,6 +33,7 @@ class AddArtistForm extends React.Component {
             .then(res => {
                 alert(`L'artiste ${res.name} a bien été ajouté !`);
                 console.log(res);
+                
             })
             .catch(event => {
                 console.error(event);
@@ -39,7 +41,6 @@ class AddArtistForm extends React.Component {
             });
     }
     
-
     render() {
         console.log(this.state);
         return (
@@ -108,7 +109,7 @@ class AddArtistForm extends React.Component {
                         <div className="form-group">
                             <label htmlFor="id_style">ID du style de l'artiste</label>
                             <input
-                            type="text"
+                            type="number"
                             className="form-control"
                             id="id_style"
                             onChange={this.onChange}
