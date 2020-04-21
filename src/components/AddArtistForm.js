@@ -1,6 +1,7 @@
 import React from 'react';
 import './AddEventForm.css';
 import ButtonReturn from './Buttons/ButtonReturn';
+import StyleItem from './StyleItem';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -32,11 +33,8 @@ class AddArtistForm extends React.Component {
             .then(res => res.data)
             .then(res => {
                 alert(`L'artiste ${res.name} a bien été ajouté !`);
-                console.log(res);
-                
             })
             .catch(event => {
-                console.error(event);
                 alert(`Erreur lors de l'ajout de l'artiste : ${event.message}`);
             });
     }
@@ -108,13 +106,9 @@ class AddArtistForm extends React.Component {
                         </div>
                         <div className="form-group">
                             <label htmlFor="id_style">ID du style de l'artiste</label>
-                            <input
-                            type="number"
-                            className="form-control"
-                            id="id_style"
-                            onChange={this.onChange}
-                            value={this.state.value}
-                            />
+                            <select className="form-control" onChange={this.onChange} value={this.state.value} id="id_style">
+                                <StyleItem />
+                            </select>
                         </div>
                         <div className="form-group">
                             <label htmlFor="description">Description</label>
