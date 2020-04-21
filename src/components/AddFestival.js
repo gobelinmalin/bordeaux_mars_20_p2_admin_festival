@@ -14,7 +14,7 @@ function AddFestival() {
                     <Link to="/"><ButtonReturn /></Link>
                 </div>
                 <Link to="/artists"><ButtonAddArtists /></Link>
-                <ButtonAddAccomodations />
+                <Link to="/accomodations"><ButtonAddAccomodations /></Link>
                 <Link to="/add-event"><ButtonAddEvent /></Link>
             </div>
         </div>

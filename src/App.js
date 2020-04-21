@@ -9,6 +9,7 @@ import AddFestival from './components/AddFestival';
 import ArtistList from './components/ArtistList';
 import AddEventForm from './components/AddEventForm';
 import AddArtistForm from './components/AddArtistForm';
+import AccomodationList from './components/AccomodationList'
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
       </Switch>
       <Switch>
           <Route path="/add-artist" component={AddArtistForm} />
+      </Switch>
+      <Switch>
+          <Route path="/accomodations" component={AccomodationList} />
       </Switch>
     </div>
     
