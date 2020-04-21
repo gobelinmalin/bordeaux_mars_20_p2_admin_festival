@@ -138,7 +138,9 @@ h2 {
 
 .img-round {
     width: 70px;
+    height: 70px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 @media screen and (max-width: 992px) {
