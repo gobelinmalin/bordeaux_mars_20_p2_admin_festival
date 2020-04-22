@@ -2,7 +2,7 @@ import React from 'react';
 import '../style.css';
 import './ArtistList.css';
 import AccomodationItem from './AccomodationItem';
-import ButtonAddFest from './Buttons/ButtonAddFest';
+import ButtonAddAccomodation from './Buttons/ButtonAddAccomodation';
 import ButtonReturn from './Buttons/ButtonReturn';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -24,7 +24,7 @@ class AccomodationList extends React.Component {
         return (
             <div>
                 <div className="Action col-12">
-                <Link to="/add-festival"><ButtonAddFest /></Link>
+                <Link to="/add-accomodation"><ButtonAddAccomodation /></Link>
                 </div>
                 <div className="ArtistList container">
                     <h3>Liste des hébergements du festival</h3>
