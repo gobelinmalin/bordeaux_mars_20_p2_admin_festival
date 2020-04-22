@@ -72,48 +72,101 @@ h2 {
     }
 }
 
+/* CONTENT */
+
+.ActionCenter {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 50px 0px;
+}
+
+.ActionBloc {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 1.5rem;
+}
+
+.mandatory {
+    font-size: 1rem;
+    font-style: italic;
+    color: red;
+}
+
+.CenteredItem {
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* CARDS */
+
+.Card {
+    border-bottom: 2px solid rgb(230, 224, 224);
+    margin: 15px 0px;
+}
+
+.InfoUp {
+    display: flex;
+    flex-direction: row;
+}
+
+.IdItem {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+h3 {
+    font-weight: 700;
+}
+
 /* BUTTONS */
 
-.ButtonAddFest {
+.ButtonAction {
+    text-align: center;
+    color: #fff;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 10px;
+    margin: 0px 10px;
+}
+
+.Update {
+    background-color: #F1B155;
+}
+.Update:hover {
+    background-color: rgb(207, 146, 60);
+}
+
+.Delete {
+    background-color: #E44F55;
+}
+.Delete:hover {
+    background-color: rgb(190, 52, 57);
+}
+
+.Action {
+    background-color: #9185BE;
+}
+.Action:hover {
+    background-color: rgb(114, 100, 165);
+}
+
+.SaveForm {
     text-align: center;
     background-color: #9185BE;
     color: #fff;
-    margin: 50px 0px;
+    margin: 20px 0px;
     padding: 15px 25px;
     border: none;
     border-radius: 10px;
     width: 100%;
-}
-
-.ButtonAddFest:hover {
-    background-color: rgb(114, 100, 165);
-}
-
-.ButtonUpdate {
-    text-align: center;
-    background-color: #F1B155;
-    color: #fff;
-    margin-right: 15px;
-    padding: 15px 25px;
-    border: none;
-    border-radius: 10px;
-}
-
-.ButtonUpdate:hover {
-    background-color: rgb(207, 146, 60);
-}
-
-.ButtonDelete {
-    text-align: center;
-    background-color: #E44F55;
-    color: #fff;
-    padding: 15px 25px;
-    border: none;
-    border-radius: 10px;
-}
-
-.ButtonDelete:hover {
-    background-color: rgb(190, 52, 57);
 }
 
 .ButtonReturn {
@@ -125,13 +178,8 @@ h2 {
     border-radius: 10px;
     font-size: 1rem;
 }
-
-.Action {
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-top: 50px;
+.ButtonReturn:hover {
+    background-color: rgb(245, 240, 240);
 }
 
 /* IMAGE */

@@ -1,5 +1,5 @@
 import React from 'react';
-import './AddEventForm.css';
+import '../style.css';
 import ButtonReturn from './Buttons/ButtonReturn';
 import StyleItem from './StyleItem';
 import { Link } from 'react-router-dom';
@@ -43,7 +43,7 @@ class AddArtistForm extends React.Component {
         console.log(this.state);
         return (
             <div>
-                <div className="container AddEvent">
+                <div className="container ActionBloc">
                     <p className="title">Ajouter un artiste</p>
                     <Link to="/artists"><ButtonReturn /></Link>
                 </div>
@@ -124,7 +124,7 @@ class AddArtistForm extends React.Component {
                         </div>
                         <p className="mandatory">Tous les champs ci-dessus sont obligatoires</p>
                         <div className="col-sm-4 offset-sm-4">
-                            <input type="submit" className="ButtonAddEvent" value="Enregistrer" />
+                            <input type="submit" className="SaveForm" value="Enregistrer" />
                         </div>
                     </form>
                 </div>

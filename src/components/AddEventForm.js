@@ -1,5 +1,5 @@
 import React from 'react';
-import './AddEventForm.css';
+import '../style.css';
 import ButtonReturn from './Buttons/ButtonReturn';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -44,7 +44,7 @@ class AddEventForm extends React.Component {
     render() {
         return (
             <div>
-                <div className="container AddEvent">
+                <div className="container ActionBloc">
                     <p className="title">Description de l'évènement</p>
                     <Link to="/add-festival"><ButtonReturn /></Link>
                 </div>
@@ -159,7 +159,7 @@ class AddEventForm extends React.Component {
                             />
                         </div>
                         <div className="col-sm-4 offset-sm-4">
-                            <input type="submit" className="ButtonAddEvent" value="Enregistrer" />
+                            <input type="submit" className="SaveForm" value="Enregistrer" />
                         </div>
                     </form>
                 </div>
