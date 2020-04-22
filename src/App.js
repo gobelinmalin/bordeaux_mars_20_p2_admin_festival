@@ -10,6 +10,7 @@ import ArtistList from './components/ArtistList';
 import AddEventForm from './components/AddEventForm';
 import AddArtistForm from './components/AddArtistForm';
 import AccomodationList from './components/AccomodationList'
+import AddAccomodationForm from './components/AddAccomodationForm';
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
       </Switch>
       <Switch>
           <Route path="/accomodations" component={AccomodationList} />
+      </Switch>
+      <Switch>
+          <Route path="/add-accomodation" component={AddAccomodationForm} />
       </Switch>
     </div>
     
