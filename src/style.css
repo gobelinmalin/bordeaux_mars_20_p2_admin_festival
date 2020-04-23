@@ -192,7 +192,7 @@ h3 {
 }
 
 @media screen and (max-width: 992px) {
-    .FestInfoUp {
+    .InfoUp {
         flex-direction: column !important;
         margin-bottom: 15px;
     }

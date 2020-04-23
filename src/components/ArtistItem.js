@@ -6,10 +6,8 @@ import ButtonAction from './Buttons/ButtonAction';
 class ArtistItem extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            // isRead: false
-        }
     }
+
 
     render() {
         return (
@@ -29,7 +27,7 @@ class ArtistItem extends React.Component {
                         </div>
                         <div className="buttons col-md-8">
                             <ButtonAction name="Modifier" class="Update"/>
-                            <ButtonAction name="Supprimer" class="Delete"/>
+                            <ButtonAction name="Supprimer" class="Delete" /*onClick={e => this.props.deleteArtist(e)}*//>
                         </div>
                     </div>
                     <div className="Description col-md-12">

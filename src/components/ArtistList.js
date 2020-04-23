@@ -9,15 +9,29 @@ import ButtonAction from './Buttons/ButtonAction';
 
 class ArtistList extends React.Component {
     state = {
-        artist: []
+        artists: []
     }
     componentDidMount() {
         axios.get('https://api-festival.herokuapp.com/api/artists')
         .then(response => response.data)
         .then(data => {
-            this.setState({ artist: data })
+            this.setState({ artists: data })
         });
     }
+
+    // handleDelete = (item) => {
+    //     axios.delete('https://api-festival.herokuapp.com/api/artists')
+    //     .then(response => {
+    //         this.setState(previousState => {
+    //           return {
+    //             artists: previousState.artists.filter(m => item.idartist !== item.idartist)
+    //           };
+    //         });
+    //       })
+    //       .catch(err => {
+    //         alert(`Erreur lors de la suppression de l'artiste : ${err.message}`);
+    //       });
+    // }
     
     render() {
         return (
@@ -30,7 +44,7 @@ class ArtistList extends React.Component {
                     <Link to="/add-festival"><ButtonReturn /></Link>
                 </div>
                 <section id="list" className="container ContainerBody">
-                    {this.state.artist.map((item, index) =>
+                    {this.state.artists.map((item, index) =>
                     <ArtisItem
                         key={index}
                         idartist={item.idartist}
