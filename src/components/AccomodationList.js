@@ -1,8 +1,7 @@
 import React from 'react';
 import '../style.css';
-import './ArtistList.css';
 import AccomodationItem from './AccomodationItem';
-import ButtonAddAccomodation from './Buttons/ButtonAddAccomodation';
+import ButtonAction from './Buttons/ButtonAction';
 import ButtonReturn from './Buttons/ButtonReturn';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -23,14 +22,14 @@ class AccomodationList extends React.Component {
     render() {
         return (
             <div>
-                <div className="Action col-12">
-                <Link to="/add-accomodation"><ButtonAddAccomodation /></Link>
+                <div className="ActionCenter col-12">
+                <Link to="/add-accomodation"><ButtonAction name="Ajouter un hébergement" class="Action" /></Link>
                 </div>
-                <div className="ArtistList container">
+                <div className="ActionBloc container">
                     <h3>Liste des hébergements du festival</h3>
                     <Link to="/add-festival"><ButtonReturn /></Link>
                 </div>
-                <div id="list" className="container ContainerBody">
+                <section id="list" className="container ContainerBody">
                     {this.state.accomodations.map((accomodation, index) =>
                     <AccomodationItem
                         key={index}
@@ -52,7 +51,7 @@ class AccomodationList extends React.Component {
                         airbnb={accomodation.airbnb}
                     />
                     )}
-                </div>
+                </section>
             </div>
         );
     }

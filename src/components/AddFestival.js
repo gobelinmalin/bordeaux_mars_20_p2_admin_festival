@@ -1,9 +1,7 @@
 import React from 'react';
-import './AddFestival.css';
-import ButtonAddArtists from './Buttons/ButtonAddArtists';
-import ButtonAddAccomodations from './Buttons/ButtonAddAccomodations';
-import ButtonAddEvent from './Buttons/ButtonAddEvent';
+import '../style.css';
 import ButtonReturn from './Buttons/ButtonReturn';
+import ButtonAction from './Buttons/ButtonAction';
 import { Link } from 'react-router-dom';
 
 function AddFestival() {
@@ -13,9 +11,11 @@ function AddFestival() {
                 <div className="CenteredItem">
                     <Link to="/"><ButtonReturn /></Link>
                 </div>
-                <Link to="/artists"><ButtonAddArtists /></Link>
-                <Link to="/accomodations"><ButtonAddAccomodations /></Link>
-                <Link to="/add-event"><ButtonAddEvent /></Link>
+                <div className="ActionCenter">
+                    <Link to="/artists"><ButtonAction name="Artistes" class="Action"/></Link>
+                    <Link to="/accomodations"><ButtonAction name="Hébergement" class="Action"/></Link>
+                    <Link to="/add-event"><ButtonAction name="Evènement" class="Action"/></Link>
+                </div>
             </div>
         </div>
     );

@@ -1,22 +1,30 @@
 import React from 'react';
-import './AddEventForm.css';
+import '../style.css';
 import ButtonReturn from './Buttons/ButtonReturn';
-import StyleItem from './StyleItem';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 
 class AddAccomodationForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
-            image_url: '',
-            tracker_count: 0,
-            music_url: '',
-            description: '',
-            country: '',
-            id_style: '',
-            embed_video: ''
+            namePackage: '',
+            nameAccomodation: '',
+            passPrice: '',
+            priceByNight: '',
+            price: '',
+            date: '',
+            hour: '',
+            image1: '',
+            image2: '',
+            image3: '',
+            image4: '',
+            numberPlace: '',
+            km: '',
+            placeAvailable: '',
+            airbnb: false,
+            description: ''
         }
     }
 
@@ -32,7 +40,7 @@ class AddAccomodationForm extends React.Component {
         axios.post(url, this.state)
             .then(res => res.data)
             .then(res => {
-                alert(`L'hébgerment ${res.name} a bien été ajouté !`);
+                alert(`L'hébergement ${res.name} a bien été ajouté !`);
             })
             .catch(event => {
                 alert(`Erreur lors de l'ajout de l'hébergement : ${event.message}`);
@@ -43,7 +51,7 @@ class AddAccomodationForm extends React.Component {
         console.log(this.state);
         return (
             <div>
-                <div className="container AddEvent">
+                <div className="container ActionBloc">
                     <p className="title">Ajouter un hébergement</p>
                     <Link to="/accomodations"><ButtonReturn /></Link>
                 </div>
@@ -51,64 +59,125 @@ class AddAccomodationForm extends React.Component {
                     <form onSubmit={this.submitForm}>
                         <div className="form-row">
                             <div className="form-group col-md-6">
-                                <label htmlFor="name">Nom</label>
+                                <label htmlFor="nameAccomodation">Nom de l'hébergement</label>
                                 <input
                                 type="text"
                                 className="form-control"
-                                id="name"
+                                id="nameAccomodation"
                                 onChange={this.onChange}
                                 value={this.state.value}
                                 />
                             </div>
                             <div className="form-group col-md-6">
-                                <label htmlFor="country">Pays</label>
+                                <label htmlFor="namePackage">Nom du package festival</label>
                                 <input
                                 type="text"
                                 className="form-control"
-                                id="country"
+                                id="namePackage"
                                 onChange={this.onChange}
                                 value={this.state.value}
                                 />
                             </div>
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="image_url">Lien vers l'image de l'artiste</label>
-                            <input
-                            type="text"
-                            className="form-control"
-                            id="image_url"
-                            placeholder="https://..."
-                            onChange={this.onChange}
-                            value={this.state.value}
-                            />
+                        <div className="form-row">
+                            <div className="form-group col-md-4">
+                                <label htmlFor="priceByNight">Prix par nuit</label>
+                                <input
+                                type="number"
+                                className="form-control"
+                                id="priceByNight"
+                                onChange={this.onChange}
+                                value={this.state.value}
+                                />
+                            </div>
+                            <div className="form-group col-md-4">
+                                <label htmlFor="price">Prix global</label>
+                                <input
+                                type="number"
+                                className="form-control"
+                                id="price"
+                                onChange={this.onChange}
+                                value={this.state.value}
+                                />
+                            </div>
+                            <div className="form-group col-md-4">
+                                <label htmlFor="passPrice">Prix avec le pass</label>
+                                <input
+                                type="number"
+                                className="form-control"
+                                id="passPrice"
+                                onChange={this.onChange}
+                                value={this.state.value}
+                                />
+                            </div>
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="music_url">Lien vers le compte Youtube de l'artiste</label>
-                            <input
-                            type="text"
-                            className="form-control"
-                            id="music_url"
-                            placeholder="https://..."
-                            onChange={this.onChange}
-                            value={this.state.value}
-                            />
+                        <div className="form-row">
+                            <div className="form-group col-md-6">
+                                <label htmlFor="date">Date de disponibilité</label>
+                                <input
+                                type="date"
+                                className="form-control"
+                                id="date"
+                                onChange={this.onChange}
+                                value={this.state.value}
+                                />
+                            </div>
+                            <div className="form-group col-md-6">
+                                <label htmlFor="hour">Horaire de check-in</label>
+                                <input
+                                type="text"
+                                className="form-control"
+                                id="hour"
+                                onChange={this.onChange}
+                                value={this.state.value}
+                                />
+                            </div>
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="embed_video">Lien embed vers le clip de l'artiste</label>
-                            <input
-                            type="text"
-                            className="form-control"
-                            id="embed_video"
-                            placeholder='<iframe width="560" height="315" src="..."></iframe>'
-                            onChange={this.onChange}
-                            value={this.state.value}
-                            />
+                        <div className="form-row">
+                            <div className="form-group col-md-6">
+                                <label htmlFor="numberPlace">Nombre de place</label>
+                                <input
+                                type="number"
+                                className="form-control"
+                                id="numberPlace"
+                                onChange={this.onChange}
+                                value={this.state.value}
+                                />
+                            </div>
+                            <div className="form-group col-md-6">
+                                <label htmlFor="placeAvailable">Nombre de places disponibles</label>
+                                <input
+                                type="number"
+                                className="form-control"
+                                id="placeAvailable"
+                                onChange={this.onChange}
+                                value={this.state.value}
+                                />
+                            </div>
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="id_style">ID du style de l'artiste</label>
-                            <select className="form-control" onChange={this.onChange} value={this.state.value} id="id_style">
-                                <StyleItem />
-                            </select>
+                        <div className="form-row">
+                            <div className="form-group col-md-6">
+                                <label htmlFor="km">Distance du festival (km)</label>
+                                <input
+                                type="number"
+                                className="form-control"
+                                id="km"
+                                onChange={this.onChange}
+                                value={this.state.value}
+                                />
+                            </div>
+                            <div className=" col-md-6">
+                                <label htmlFor="airbnb">Partenariat Airbnb</label><br/>
+                                <BootstrapSwitchButton
+                                checked={false}
+                                id="airbnb"
+                                data-toggle="toggle"
+                                onstyle="success"
+                                onChange={(checked) => {
+                                    this.setState({ airbnb: checked })
+                                }}
+                                />
+                            </div>
                         </div>
                         <div className="form-group">
                             <label htmlFor="description">Description</label>
@@ -123,8 +192,52 @@ class AddAccomodationForm extends React.Component {
                             </textarea>
                         </div>
                         <p className="mandatory">Tous les champs ci-dessus sont obligatoires</p>
+                        <div className="form-group">
+                            <label htmlFor="image1">Image 1 de l'hébergement</label>
+                            <input
+                            type="text"
+                            className="form-control"
+                            id="image1"
+                            placeholder="https://..."
+                            onChange={this.onChange}
+                            value={this.state.value}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="image2">Image 2 de l'hébergement</label>
+                            <input
+                            type="text"
+                            className="form-control"
+                            id="image2"
+                            placeholder="https://..."
+                            onChange={this.onChange}
+                            value={this.state.value}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="image3">Image 3 de l'hébergement</label>
+                            <input
+                            type="text"
+                            className="form-control"
+                            id="image3"
+                            placeholder="https://..."
+                            onChange={this.onChange}
+                            value={this.state.value}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="image4">Image 4 de l'hébergement</label>
+                            <input
+                            type="text"
+                            className="form-control"
+                            id="image4"
+                            placeholder="https://..."
+                            onChange={this.onChange}
+                            value={this.state.value}
+                            />
+                        </div>
                         <div className="col-sm-4 offset-sm-4">
-                            <input type="submit" className="ButtonAddEvent" value="Enregistrer" />
+                            <input type="submit" className="SaveForm" value="Enregistrer" />
                         </div>
                     </form>
                 </div>

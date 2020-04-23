@@ -1,11 +1,10 @@
 import React from 'react';
 import '../style.css';
-import './ArtistList.css';
-import ButtonAddArtist from './Buttons/ButtonAddArtist';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import ArtisItem from './ArtistItem';
 import ButtonReturn from './Buttons/ButtonReturn';
+import ButtonAction from './Buttons/ButtonAction';
 
 
 class ArtistList extends React.Component {
@@ -23,14 +22,14 @@ class ArtistList extends React.Component {
     render() {
         return (
             <div>
-                <div className="Action col-12">
-                <Link to="/add-artist"><ButtonAddArtist /></Link>
+                <div className="ActionCenter col-12">
+                <Link to="/add-artist"><ButtonAction name="Ajouter un artiste" class="Action" /></Link>
                 </div>
-                <div className="ArtistList container">
+                <div className="ActionBloc container">
                     <h3>Liste des artistes du festival</h3>
                     <Link to="/add-festival"><ButtonReturn /></Link>
                 </div>
-                <div id="list" className="container ContainerBody">
+                <section id="list" className="container ContainerBody">
                     {this.state.artist.map((item, index) =>
                     <ArtisItem
                         key={index}
@@ -41,7 +40,7 @@ class ArtistList extends React.Component {
                         country={item.country}
                     />
                     )}
-                </div>
+                </section>
             </div>
         );
     }

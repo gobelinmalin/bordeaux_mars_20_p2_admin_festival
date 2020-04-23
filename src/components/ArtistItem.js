@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './FestivalItem.css';
-import ButtonUpdate from './Buttons/ButtonUpdate';
-import ButtonDelete from './Buttons/ButtonDelete';
+import '../style.css';
+import ButtonAction from './Buttons/ButtonAction';
 
 class ArtistItem extends React.Component {
     constructor(props) {
@@ -15,25 +14,25 @@ class ArtistItem extends React.Component {
     render() {
         return (
             <div className="container">
-                <div className="FestCard">
-                    <div className="FestInfoUp">
+                <div className="Card">
+                    <div className="InfoUp">
                         <div className="col-md-1">
                             <img src={this.props.image_url} className="img-round" alt={this.props.name}/>
                         </div>
                         <div className="col-md-7">
-                            <div className="FestTitle">
-                                <h3>{this.props.name} <span className="idfestival">{`(id : ${this.props.idartist})`}</span></h3>
+                            <div>
+                                <h3>{this.props.name} <span className="IdItem">{`(id : ${this.props.idartist})`}</span></h3>
                             </div>
-                            <div className="FestInfo">
+                            <div>
                                 <p>Genre, {this.props.country}</p>
                             </div>
                         </div>
                         <div className="buttons col-md-8">
-                            <ButtonUpdate />
-                            <ButtonDelete />
+                            <ButtonAction name="Modifier" class="Update"/>
+                            <ButtonAction name="Supprimer" class="Delete"/>
                         </div>
                     </div>
-                    <div className="FestDescription col-md-12">
+                    <div className="Description col-md-12">
                         <p>
                             {this.props.music_url}
                         </p>
