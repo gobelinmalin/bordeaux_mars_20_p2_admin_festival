@@ -31,7 +31,7 @@ class FestivalList extends React.Component {
                         idfestival={item.idfestival}
                         name={item.name}
                         description={item.description}
-                        datetime={item.datetime}
+                        startDate={item.startDate}
                         city={item.city}
                         country={item.country}
                     />

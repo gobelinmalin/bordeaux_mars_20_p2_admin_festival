@@ -3,7 +3,7 @@ import '../../style.css';
 
 function ButtonAction(props) {
     return (
-    <button className={`ButtonAction ${props.class}`} >{props.name}</button>
+    <button className={`ButtonAction ${props.class}`} onClick={props.deleteArtist} >{props.name}</button>
     );
 }
 

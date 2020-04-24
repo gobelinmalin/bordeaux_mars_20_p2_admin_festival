@@ -21,7 +21,7 @@ class FestivalItem extends React.Component {
                                 <h3>{this.props.name} <span className="IdItem">{`(id : ${this.props.idfestival})`}</span></h3>
                             </div>
                             <div>
-                                <p>{`Du ${this.props.datetime}`}   {this.props.city} {this.props.country}</p>
+                                <p>{`Du ${this.props.startDate}`}   {this.props.city} {this.props.country}</p>
                             </div>
                         </div>
                         <div className="buttons col-md-8">

@@ -2,12 +2,22 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../style.css';
 import ButtonAction from './Buttons/ButtonAction';
+import axios from 'axios';
 
 class ArtistItem extends React.Component {
     constructor(props) {
         super(props);
     }
 
+    deleteArtist = (idartist) => {
+        axios.delete(`https://api-festival.herokuapp.com/api/artists/${this.props.idartist}`)
+        .then(response => {
+            alert(`L'artiste a bien été supprimé`);
+          })
+          .catch(err => {
+            alert(`Erreur lors de la suppression de l'artiste : ${err.message}`);
+          });
+    }
 
     render() {
         return (
@@ -26,8 +36,9 @@ class ArtistItem extends React.Component {
                             </div>
                         </div>
                         <div className="buttons col-md-8">
-                            <ButtonAction name="Modifier" class="Update"/>
-                            <ButtonAction name="Supprimer" class="Delete" /*onClick={e => this.props.deleteArtist(e)}*//>
+                            <ButtonAction name="Modifier" class="Update" /*onClick={this.updateArtist()}*//>
+                            <ButtonAction name="Supprimer" class="Delete" /*onClick={() => this.props.deleteArtist(this.props.idartist)}*//>
+                            <button onClick={() => this.deleteArtist(this.props.idartist)}>Supprimer</button>
                         </div>
                     </div>
                     <div className="Description col-md-12">

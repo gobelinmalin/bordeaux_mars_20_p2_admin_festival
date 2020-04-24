@@ -19,19 +19,15 @@ class ArtistList extends React.Component {
         });
     }
 
-    // handleDelete = (item) => {
-    //     axios.delete('https://api-festival.herokuapp.com/api/artists')
-    //     .then(response => {
-    //         this.setState(previousState => {
-    //           return {
-    //             artists: previousState.artists.filter(m => item.idartist !== item.idartist)
-    //           };
-    //         });
-    //       })
-    //       .catch(err => {
-    //         alert(`Erreur lors de la suppression de l'artiste : ${err.message}`);
-    //       });
-    // }
+    deleteArtist = (idartist) => {
+        axios.delete(`https://api-festival.herokuapp.com/api/artists/${idartist}`)
+        .then(response => {
+            alert(`L'artiste a bien été supprimé`)
+          })
+          .catch(err => {
+            alert(`Erreur lors de la suppression de l'artiste : ${err.message}`);
+          });
+    }
     
     render() {
         return (
