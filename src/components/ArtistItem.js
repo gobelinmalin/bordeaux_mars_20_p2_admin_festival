@@ -37,8 +37,7 @@ class ArtistItem extends React.Component {
                         </div>
                         <div className="buttons col-md-8">
                             <ButtonAction name="Modifier" class="Update" /*onClick={this.updateArtist()}*//>
-                            <ButtonAction name="Supprimer" class="Delete" /*onClick={() => this.props.deleteArtist(this.props.idartist)}*//>
-                            <button onClick={() => this.deleteArtist(this.props.idartist)}>Supprimer</button>
+                            <ButtonAction name="Supprimer" class="Delete" onClick={() => this.deleteArtist(this.props.idartist)}/>
                         </div>
                     </div>
                     <div className="Description col-md-12">

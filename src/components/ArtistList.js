@@ -19,15 +19,7 @@ class ArtistList extends React.Component {
         });
     }
 
-    deleteArtist = (idartist) => {
-        axios.delete(`https://api-festival.herokuapp.com/api/artists/${idartist}`)
-        .then(response => {
-            alert(`L'artiste a bien été supprimé`)
-          })
-          .catch(err => {
-            alert(`Erreur lors de la suppression de l'artiste : ${err.message}`);
-          });
-    }
+    
     
     render() {
         return (
