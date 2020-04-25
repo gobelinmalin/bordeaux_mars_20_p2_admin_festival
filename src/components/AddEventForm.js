@@ -9,7 +9,8 @@ class AddEventForm extends React.Component {
         super(props);
         this.state = {
             name: '',
-            datetime: '',
+            startDate: '',
+            endDate: '',
             city: '',
             country: '',
             description: '',
@@ -33,10 +34,9 @@ class AddEventForm extends React.Component {
         axios.post(url, this.state)
             .then(res => res.data)
             .then(res => {
-                alert(`Le festival ${res.name} a bien été ajouté !`);
+                alert(`Le festival ${this.state.name} a bien été ajouté !`);
             })
             .catch(e => {
-                console.error(event);
                 alert(`Erreur lors de l'ajout du festival : ${event.message}`);
             });
     }
@@ -61,12 +61,22 @@ class AddEventForm extends React.Component {
                                 value={this.state.value}
                                 />
                             </div>
-                            <div className="form-group col-md-6">
-                                <label htmlFor="datetime">Date de l'évènement</label>
+                            <div className="form-group col-md-3">
+                                <label htmlFor="startDate">Date de début l'évènement</label>
                                 <input
                                 type="date"
                                 className="form-control"
-                                id="datetime"
+                                id="startDate"
+                                onChange={this.onChange}
+                                value={this.state.value}
+                                />
+                            </div>
+                            <div className="form-group col-md-3">
+                                <label htmlFor="endDate">Date de fin l'évènement</label>
+                                <input
+                                type="date"
+                                className="form-control"
+                                id="endDate"
                                 onChange={this.onChange}
                                 value={this.state.value}
                                 />

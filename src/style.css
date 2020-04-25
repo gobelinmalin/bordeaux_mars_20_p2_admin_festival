@@ -192,9 +192,22 @@ h3 {
 }
 
 @media screen and (max-width: 992px) {
-    .FestInfoUp {
+    .InfoUp {
         flex-direction: column !important;
         margin-bottom: 15px;
     }
     
+}
+
+/* SKELETONS */
+
+.ContainerSkeleton {
+    background-color: #fff;
+    padding: 20px 0px;
+    margin-bottom: 50px;
+}
+
+.H1Skeleton {
+    height: 1rem;
+    width: 20%;
 }

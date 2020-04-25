@@ -32,7 +32,7 @@ class AddArtistForm extends React.Component {
         axios.post(url, this.state)
             .then(res => res.data)
             .then(res => {
-                alert(`L'artiste ${res.name} a bien été ajouté !`);
+                alert(`L'artiste ${this.state.name} a bien été ajouté !`);
             })
             .catch(event => {
                 alert(`Erreur lors de l'ajout de l'artiste : ${event.message}`);

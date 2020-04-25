@@ -40,7 +40,7 @@ class AddAccomodationForm extends React.Component {
         axios.post(url, this.state)
             .then(res => res.data)
             .then(res => {
-                alert(`L'hébergement ${res.name} a bien été ajouté !`);
+                alert(`L'hébergement ${this.state.nameAccomodation} a bien été ajouté !`);
             })
             .catch(event => {
                 alert(`Erreur lors de l'ajout de l'hébergement : ${event.message}`);

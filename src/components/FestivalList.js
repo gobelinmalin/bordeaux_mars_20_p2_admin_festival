@@ -3,6 +3,7 @@ import '../style.css';
 import FestivalItem from './FestivalItem';
 import ButtonAction from './Buttons/ButtonAction';
 import { Link } from 'react-router-dom';
+import FestivalSkeleton from './Skeletons/FestivalSkeleton';
 import axios from 'axios';
 
 
@@ -25,13 +26,14 @@ class FestivalList extends React.Component {
                 <Link to="/add-festival"><ButtonAction name="Ajouter un festival" class="Action"/></Link>
                 </div>
                 <section id="list" className="container ContainerBody">
-                    {this.state.festival.map((item, index) =>
+                    {!this.state.festival ? <FestivalSkeleton /> : this.state.festival.map((item, index) =>
                     <FestivalItem
                         key={index}
                         idfestival={item.idfestival}
                         name={item.name}
                         description={item.description}
-                        datetime={item.datetime}
+                        startDate={item.startDate}
+                        endDate={item.endDate}
                         city={item.city}
                         country={item.country}
                     />
