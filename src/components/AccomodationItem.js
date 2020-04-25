@@ -2,8 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../style.css';
 import ButtonAction from './Buttons/ButtonAction';
+import axios from 'axios';
 
 class AccomodationItem extends React.Component {
+
+    deleteEvent = (idaccomodation) => {
+        axios.delete(`https://api-festival.herokuapp.com/api/accomodation/${this.props.idaccomodation}`)
+        .then(response => {
+            alert(`L'hébergement a bien été supprimé`);
+          })
+          .catch(err => {
+            alert(`Erreur lors de la suppression de l'hébergement : ${err.message}`);
+          });
+    }
 
     render() {
         return (
@@ -23,7 +34,7 @@ class AccomodationItem extends React.Component {
                         </div>
                         <div className="buttons col-md-8">
                             <ButtonAction name="Modifier" class="Update"/>
-                            <ButtonAction name="Supprimer" class="Delete"/>
+                            <ButtonAction name="Supprimer" class="Delete" onClick={() => this.deleteEvent(this.props.idaccomodation)}/>
                         </div>
                     </div>
                     <div className="Description col-md-12">
