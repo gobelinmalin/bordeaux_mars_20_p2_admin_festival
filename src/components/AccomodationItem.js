@@ -32,7 +32,7 @@ class AccomodationItem extends React.Component {
                                 <p>{this.props.soldOut ? "Sold Out" : "Disponible"} | Prix avec Pass : {this.props.passPrice}€ | Prix par nuit : {this.props.priceByNight}€</p>
                             </div>
                         </div>
-                        <div className="buttons col-md-8">
+                        <div className="buttons col-md-4">
                             <ButtonAction name="Modifier" class="Update"/>
                             <ButtonAction name="Supprimer" class="Delete" onClick={() => this.deleteEvent(this.props.idaccomodation)}/>
                         </div>

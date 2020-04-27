@@ -32,7 +32,7 @@ class FestivalItem extends React.Component {
                                 <p>{`Du ${this.props.startDate} au ${this.props.endDate} à ${this.props.city}, ${this.props.country}`}</p>
                             </div>
                         </div>
-                        <div className="buttons col-md-8">
+                        <div className="buttons col-md-4">
                             <ButtonAction name="Modifier" class="Update"/>
                             <ButtonAction name="Supprimer" class="Delete" onClick={() => this.deleteEvent(this.props.idfestival)}/>
                         </div>
