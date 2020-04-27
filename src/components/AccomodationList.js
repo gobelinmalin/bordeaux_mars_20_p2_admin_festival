@@ -5,17 +5,18 @@ import ButtonAction from './Buttons/ButtonAction';
 import ButtonReturn from './Buttons/ButtonReturn';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-
+import AccomodationSkeleton from './Skeletons/AccomodationSkeleton';
 
 class AccomodationList extends React.Component {
     state = {
-        accomodations: []
+        accomodations: [],
+        skeleton: true
     }
     componentDidMount() {
         axios.get('https://api-festival.herokuapp.com/api/accomodation')
         .then(response => response.data)
         .then(data => {
-            this.setState({ accomodations: data })
+            this.setState({ accomodations: data, skeleton: false })
         })
     }
     
@@ -29,7 +30,9 @@ class AccomodationList extends React.Component {
                     <h3>Liste des hébergements du festival</h3>
                     <Link to="/add-festival"><ButtonReturn /></Link>
                 </div>
-                <section id="list" className="container ContainerBody">
+                {
+                    this.state.skeleton ? <AccomodationSkeleton/> : 
+                    <section id="list" className="container ContainerBody">
                     {this.state.accomodations.map((accomodation, index) =>
                     <AccomodationItem
                         key={index}
@@ -52,6 +55,7 @@ class AccomodationList extends React.Component {
                     />
                     )}
                 </section>
+                }
             </div>
         );
     }

@@ -5,17 +5,19 @@ import axios from 'axios';
 import ArtisItem from './ArtistItem';
 import ButtonReturn from './Buttons/ButtonReturn';
 import ButtonAction from './Buttons/ButtonAction';
+import ArtistSkeleton from './Skeletons/ArtistSkeleton';
 
 
 class ArtistList extends React.Component {
     state = {
-        artists: []
+        artists: [],
+        skeleton: true
     }
     componentDidMount() {
         axios.get('https://api-festival.herokuapp.com/api/artists')
         .then(response => response.data)
         .then(data => {
-            this.setState({ artists: data })
+            this.setState({ artists: data, skeleton: false })
         });
     }
 
@@ -31,7 +33,9 @@ class ArtistList extends React.Component {
                     <h3>Liste des artistes du festival</h3>
                     <Link to="/add-festival"><ButtonReturn /></Link>
                 </div>
-                <section id="list" className="container ContainerBody">
+                {
+                    this.state.skeleton ? <ArtistSkeleton/> :
+                    <section id="list" className="container ContainerBody">
                     {this.state.artists.map((item, index) =>
                     <ArtisItem
                         key={index}
@@ -43,6 +47,7 @@ class ArtistList extends React.Component {
                     />
                     )}
                 </section>
+                }
             </div>
         );
     }
