@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import '../style.css';
 import ButtonAction from './Buttons/ButtonAction';
 import axios from 'axios';
@@ -7,14 +6,24 @@ import axios from 'axios';
 class AccomodationItem extends React.Component {
 
     deleteEvent = (idaccomodation) => {
-        axios.delete(`https://api-festival.herokuapp.com/api/accomodation/${this.props.idaccomodation}`)
+        axios.delete(`https://api-festit.herokuapp.com/api/accomodation/${this.props.idaccomodation}`)
         .then(response => {
-            alert(`L'hébergement a bien été supprimé`);
+            alert(`L'hébergement ${this.props.nameAccomodation} a bien été supprimé`);
           })
           .catch(err => {
             alert(`Erreur lors de la suppression de l'hébergement : ${err.message}`);
           });
     }
+
+    // deleteEvent = (idaccomodation) => {
+    //     axios.delete(`https://api-festival.herokuapp.com/api/accomodation/${this.props.idaccomodation}`)
+    //     .then(response => {
+    //         alert(`L'hébergement a bien été supprimé`);
+    //       })
+    //       .catch(err => {
+    //         alert(`Erreur lors de la suppression de l'hébergement : ${err.message}`);
+    //       });
+    // }
 
     render() {
         return (

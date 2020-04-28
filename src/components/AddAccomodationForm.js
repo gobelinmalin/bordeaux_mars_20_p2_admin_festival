@@ -36,7 +36,7 @@ class AddAccomodationForm extends React.Component {
 
     submitForm = (event) => {
         event.preventDefault();
-        const url = 'https://api-festival.herokuapp.com/api/accomodation';
+        const url = 'https://api-festit.herokuapp.com/api/accomodation';
         axios.post(url, this.state)
             .then(res => res.data)
             .then(res => {
@@ -46,6 +46,19 @@ class AddAccomodationForm extends React.Component {
                 alert(`Erreur lors de l'ajout de l'hébergement : ${event.message}`);
             });
     }
+
+    // submitForm = (event) => {
+    //     event.preventDefault();
+    //     const url = 'https://api-festival.herokuapp.com/api/accomodation';
+    //     axios.post(url, this.state)
+    //         .then(res => res.data)
+    //         .then(res => {
+    //             alert(`L'hébergement ${this.state.nameAccomodation} a bien été ajouté !`);
+    //         })
+    //         .catch(event => {
+    //             alert(`Erreur lors de l'ajout de l'hébergement : ${event.message}`);
+    //         });
+    // }
     
     render() {
         console.log(this.state);

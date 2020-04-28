@@ -1,19 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import '../style.css';
 import ButtonAction from './Buttons/ButtonAction';
 import axios from 'axios';
 
 class ArtistItem extends React.Component {
     deleteArtist = (idartist) => {
-        axios.delete(`https://api-festival.herokuapp.com/api/artists/${this.props.idartist}`)
+        axios.delete(`https://api-festit.herokuapp.com/api/artists/${this.props.idartist}`)
         .then(response => {
-            alert(`L'artiste a bien été supprimé`);
+            alert(`L'artiste ${this.props.name} a bien été supprimé`);
           })
           .catch(err => {
             alert(`Erreur lors de la suppression de l'artiste : ${err.message}`);
           });
     }
+
+    // deleteArtist = (idartist) => {
+    //     axios.delete(`https://api-festival.herokuapp.com/api/artists/${this.props.idartist}`)
+    //     .then(response => {
+    //         alert(`L'artiste a bien été supprimé`);
+    //       })
+    //       .catch(err => {
+    //         alert(`Erreur lors de la suppression de l'artiste : ${err.message}`);
+    //       });
+    // }
 
     render() {
         return (

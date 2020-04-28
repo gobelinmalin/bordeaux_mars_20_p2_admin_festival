@@ -5,19 +5,26 @@ import ButtonAction from './Buttons/ButtonAction';
 import axios from 'axios';
 
 class FestivalItem extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
+    
     deleteEvent = (idfestival) => {
-        axios.delete(`https://api-festival.herokuapp.com/api/festival/${this.props.idfestival}`)
+        axios.delete(`https://api-festit.herokuapp.com/api/festival/${this.props.idfestival}`)
         .then(response => {
-            alert(`Le festival a bien été supprimé`);
+            alert(`Le festival ${this.props.name} a bien été supprimé`);
           })
           .catch(err => {
             alert(`Erreur lors de la suppression du festival : ${err.message}`);
           });
     }
+
+    // deleteEvent = (idfestival) => {
+    //     axios.delete(`https://api-festival.herokuapp.com/api/festival/${this.props.idfestival}`)
+    //     .then(response => {
+    //         alert(`Le festival a bien été supprimé`);
+    //       })
+    //       .catch(err => {
+    //         alert(`Erreur lors de la suppression du festival : ${err.message}`);
+    //       });
+    // }
 
     render() {
         return (
