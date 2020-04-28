@@ -29,8 +29,8 @@ class UpdateFestivalForm extends React.Component {
         .then(data => {
             //console.log(data.filter(item => item.idfestival === Number(params.idfestival)), 'filter');
             
-            this.setState({ [this.state]: data.filter(item => item.idfestival === Number(params.idfestival)) })
-            console.log(data.filter(item => item.idfestival === Number(params.idfestival)));
+            this.setState({ [this.state]: [...data.filter(item => item.idfestival === Number(params.idfestival))] });
+            console.log([...data.filter(item => item.idfestival === Number(params.idfestival))], 'filter');
             
             //data.filter(item => item.idfestival === Number(params.idfestival)).map(item => this.setState({ inputs:  }));
             //data.filter(fest => fest.idfestival === params.idfestival).map(item => this.setState({ item: this.state.item }))
