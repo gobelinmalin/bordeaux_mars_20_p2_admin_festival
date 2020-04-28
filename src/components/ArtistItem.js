@@ -5,10 +5,6 @@ import ButtonAction from './Buttons/ButtonAction';
 import axios from 'axios';
 
 class ArtistItem extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     deleteArtist = (idartist) => {
         axios.delete(`https://api-festival.herokuapp.com/api/artists/${this.props.idartist}`)
         .then(response => {

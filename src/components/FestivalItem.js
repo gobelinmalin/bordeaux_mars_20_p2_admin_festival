@@ -33,7 +33,7 @@ class FestivalItem extends React.Component {
                             </div>
                         </div>
                         <div className="buttons col-md-4">
-                            <ButtonAction name="Modifier" class="Update"/>
+                            <Link to={`/update-festival/${this.props.idfestival}`}><ButtonAction name="Modifier" class="Update"/></Link>
                             <ButtonAction name="Supprimer" class="Delete" onClick={() => this.deleteEvent(this.props.idfestival)}/>
                         </div>
                     </div>
