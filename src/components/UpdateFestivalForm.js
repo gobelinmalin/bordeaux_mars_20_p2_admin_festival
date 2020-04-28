@@ -21,7 +21,6 @@ class UpdateFestivalForm extends React.Component {
                 image3: '',
                 image4: ''
             }]
-
         }
     }
 
@@ -31,19 +30,15 @@ class UpdateFestivalForm extends React.Component {
         .then(response => response.data)
         .then(data => {
             //console.log(data.filter(item => item.idfestival === Number(params.idfestival)), 'filter');
-
-            this.setState({ inputs: data.filter(item => item.idfestival === Number(params.idfestival)) })
+            this.setState({ inputs: data.filter(item => item.idfestival === Number(params.idfestival)) });
             //data.filter(item => item.idfestival === Number(params.idfestival)).map(item => this.setState({ inputs:  }));
             //data.filter(fest => fest.idfestival === params.idfestival).map(item => this.setState({ item: this.state.item }))
-
-        })     
+        })
     }
 
     onChange = (event) => {
         const { inputs } = this.state;
-        this.setState({
-            [inputs[0][event.target.id]]: event.target.value,
-        });
+        this.setState({ inputs: [{ [event.target.name]: event.target.value }] });
         console.log([inputs[0][event.target.id]], 'event target console');
         console.log(event.target.value, 'event value');
     }
@@ -55,7 +50,7 @@ class UpdateFestivalForm extends React.Component {
         axios.put(url, this.state.inputs[0])
             .then(res => res.data)
             .then(res => {
-                alert(`Le festival ${this.state.inputs[0].name} a bien été modifié !`);
+                alert(`Le festival a bien été modifié !`);
             })
             .catch(e => {
                 alert(`Erreur lors de la modification du festival : ${event.message}`);
@@ -78,7 +73,7 @@ class UpdateFestivalForm extends React.Component {
                                 <input
                                 type="text"
                                 className="form-control"
-                                id="name"
+                                name="name"
                                 onChange={this.onChange}
                                 value={this.state.inputs[0].name}
                                 />
@@ -88,9 +83,9 @@ class UpdateFestivalForm extends React.Component {
                                 <input
                                 type="date"
                                 className="form-control"
-                                id="startDate"
+                                name="startDate"
                                 onChange={this.onChange}
-                                value={this.state.value}
+                                value={this.state.inputs[0].startDate}
                                 />
                             </div>
                             <div className="form-group col-md-3">
@@ -98,9 +93,9 @@ class UpdateFestivalForm extends React.Component {
                                 <input
                                 type="date"
                                 className="form-control"
-                                id="endDate"
+                                name="endDate"
                                 onChange={this.onChange}
-                                value={this.state.value}
+                                value={this.state.inputs[0].endDate}
                                 />
                             </div>
                         </div>
@@ -110,7 +105,7 @@ class UpdateFestivalForm extends React.Component {
                                 <input
                                 type="text"
                                 className="form-control"
-                                id="city"
+                                name="city"
                                 onChange={this.onChange}
                                 value={this.state.inputs[0].city}
                                 />
@@ -120,9 +115,9 @@ class UpdateFestivalForm extends React.Component {
                                 <input
                                 type="text"
                                 className="form-control"
-                                id="country"
+                                name="country"
                                 onChange={this.onChange}
-                                value={this.state.value}
+                                value={this.state.inputs[0].country}
                                 />
                             </div>
                         </div>
@@ -130,10 +125,10 @@ class UpdateFestivalForm extends React.Component {
                             <label htmlFor="description">Description</label>
                             <textarea
                             className="form-control"
-                            id="description"
+                            name="description"
                             rows="4"
                             onChange={this.onChange}
-                            value={this.state.value}
+                            value={this.state.inputs[0].description}
                             >
                             </textarea>
                         </div>
@@ -142,10 +137,10 @@ class UpdateFestivalForm extends React.Component {
                             <input
                             type="text"
                             className="form-control"
-                            id="url_video"
+                            name="url_video"
                             placeholder="URL du trailer du festival"
                             onChange={this.onChange}
-                            value={this.state.value}
+                            value={this.state.inputs[0].url_video}
                             />
                         </div>
                         <div className="form-group">
@@ -153,10 +148,10 @@ class UpdateFestivalForm extends React.Component {
                             <input
                             type="text"
                             className="form-control"
-                            id="image1"
+                            name="image1"
                             placeholder="URL de l'illustration du festival"
                             onChange={this.onChange}
-                            value={this.state.value}
+                            value={this.state.inputs[0].image1}
                             />
                         </div>
                         <p className="mandatory">Tous les champs ci-dessus sont obligatoires</p>
@@ -165,9 +160,9 @@ class UpdateFestivalForm extends React.Component {
                             <input
                             type="text"
                             className="form-control"
-                            id="image2"
+                            name="image2"
                             onChange={this.onChange}
-                            value={this.state.value}
+                            value={this.state.inputs[0].image2}
                             />
                         </div>
                         <div className="form-group">
@@ -175,9 +170,9 @@ class UpdateFestivalForm extends React.Component {
                             <input
                             type="text"
                             className="form-control"
-                            id="image3"
+                            name="image3"
                             onChange={this.onChange}
-                            value={this.state.value}
+                            value={this.state.inputs[0].image3}
                             />
                         </div>
                         <div className="form-group">
@@ -185,9 +180,9 @@ class UpdateFestivalForm extends React.Component {
                             <input
                             type="text"
                             className="form-control"
-                            id="image4"
+                            name="image4"
                             onChange={this.onChange}
-                            value={this.state.value}
+                            value={this.state.inputs[0].image4}
                             />
                         </div>
                         <div className="col-sm-4 offset-sm-4">

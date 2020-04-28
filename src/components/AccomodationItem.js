@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../style.css';
 import ButtonAction from './Buttons/ButtonAction';
 import axios from 'axios';
@@ -42,7 +43,7 @@ class AccomodationItem extends React.Component {
                             </div>
                         </div>
                         <div className="buttons col-md-4">
-                            <ButtonAction name="Modifier" class="Update"/>
+                        <Link to={`/update-accomodation/${this.props.idaccomodation}`}><ButtonAction name="Modifier" class="Update"/></Link>
                             <ButtonAction name="Supprimer" class="Delete" onClick={() => this.deleteEvent(this.props.idaccomodation)}/>
                         </div>
                     </div>
