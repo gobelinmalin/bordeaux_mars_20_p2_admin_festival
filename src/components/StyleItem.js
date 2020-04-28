@@ -17,6 +17,14 @@ class StyleItem extends React.Component {
             });
     }
 
+    // componentDidMount() {
+    //     axios.get('https://api-festival.herokuapp.com/api/style')
+    //         .then(response => response.data)
+    //         .then(data => {
+    //             this.setState({ styles: data })
+    //         });
+    // }
+
     render() {
         const { styles } = this.state;
         return styles.map((style, index) =>

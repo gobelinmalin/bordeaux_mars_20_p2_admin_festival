@@ -19,6 +19,14 @@ class AccomodationList extends React.Component {
             this.setState({ accomodations: data, skeleton: false })
         })
     }
+
+    // componentDidMount() {
+    //     axios.get('https://api-festival.herokuapp.com/api/accomodation')
+    //     .then(response => response.data)
+    //     .then(data => {
+    //         this.setState({ accomodations: data, skeleton: false })
+    //     })
+    // }
     
     render() {
         return (

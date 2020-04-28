@@ -11,6 +11,9 @@ import AddEventForm from './components/AddEventForm';
 import AddArtistForm from './components/AddArtistForm';
 import AccomodationList from './components/AccomodationList'
 import AddAccomodationForm from './components/AddAccomodationForm';
+import UpdateFestivalForm from './components/UpdateFestivalForm';
+import UpdateArtistForm from './components/UpdateArtistForm';
+import UpdateAccomodationForm from './components/UpdateAccomodationForm';
 
 function App() {
   return (
@@ -36,6 +39,15 @@ function App() {
       </Switch>
       <Switch>
           <Route path="/add-accomodation" component={AddAccomodationForm} />
+      </Switch>
+      <Switch>
+          <Route path="/update-festival/:idfestival" component={UpdateFestivalForm} />
+      </Switch>
+      <Switch>
+          <Route path="/update-artist/:idartist" component={UpdateArtistForm} />
+      </Switch>
+      <Switch>
+          <Route path="/update-accomodation/:idaccomodation" component={UpdateAccomodationForm} />
       </Switch>
     </div>
     

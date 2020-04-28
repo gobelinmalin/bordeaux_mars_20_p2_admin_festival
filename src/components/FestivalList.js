@@ -4,7 +4,6 @@ import FestivalItem from './FestivalItem';
 import ButtonAction from './Buttons/ButtonAction';
 import { Link } from 'react-router-dom';
 import FestivalSkeleton from './Skeletons/FestivalSkeleton';
-import ReactPlaceholder from 'react-placeholder';
 import axios from 'axios';
 
 
@@ -23,6 +22,17 @@ class FestivalList extends React.Component {
             })
         })
     }
+
+    // componentDidMount() {
+    //     axios.get('https://api-festival.herokuapp.com/api/festival')
+    //     .then(response => response.data)
+    //     .then(data => {
+    //         this.setState({ 
+    //             festival: data,
+    //             skeleton: false
+    //         })
+    //     })
+    // }
     
     render() {
         return (

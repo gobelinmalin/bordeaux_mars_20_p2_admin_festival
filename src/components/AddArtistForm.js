@@ -38,6 +38,19 @@ class AddArtistForm extends React.Component {
                 alert(`Erreur lors de l'ajout de l'artiste : ${event.message}`);
             });
     }
+
+    // submitForm = (event) => {
+    //     event.preventDefault();
+    //     const url = 'https://api-festival.herokuapp.com/api/artists';
+    //     axios.post(url, this.state)
+    //         .then(res => res.data)
+    //         .then(res => {
+    //             alert(`L'artiste ${this.state.name} a bien été ajouté !`);
+    //         })
+    //         .catch(event => {
+    //             alert(`Erreur lors de l'ajout de l'artiste : ${event.message}`);
+    //         });
+    // }
     
     render() {
         console.log(this.state);

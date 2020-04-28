@@ -5,19 +5,25 @@ import ButtonAction from './Buttons/ButtonAction';
 import axios from 'axios';
 
 class ArtistItem extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     deleteArtist = (idartist) => {
         axios.delete(`https://api-festival.herokuapp.com/api/artists/${this.props.idartist}`)
         .then(response => {
-            alert(`L'artiste a bien été supprimé`);
+            alert(`L'artiste ${this.props.name} a bien été supprimé`);
           })
           .catch(err => {
             alert(`Erreur lors de la suppression de l'artiste : ${err.message}`);
           });
     }
+
+    // deleteArtist = (idartist) => {
+    //     axios.delete(`https://api-festival.herokuapp.com/api/artists/${this.props.idartist}`)
+    //     .then(response => {
+    //         alert(`L'artiste a bien été supprimé`);
+    //       })
+    //       .catch(err => {
+    //         alert(`Erreur lors de la suppression de l'artiste : ${err.message}`);
+    //       });
+    // }
 
     render() {
         return (
@@ -36,7 +42,7 @@ class ArtistItem extends React.Component {
                             </div>
                         </div>
                         <div className="buttons col-md-4">
-                            <ButtonAction name="Modifier" class="Update" /*onClick={this.updateArtist()}*//>
+                            <Link to={`/update-artist/${this.props.idartist}`}><ButtonAction name="Modifier" class="Update"/></Link>
                             <ButtonAction name="Supprimer" class="Delete" onClick={() => this.deleteArtist(this.props.idartist)}/>
                         </div>
                     </div>
