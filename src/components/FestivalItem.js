@@ -7,7 +7,7 @@ import axios from 'axios';
 class FestivalItem extends React.Component {
     
     deleteEvent = (idfestival) => {
-        axios.delete(`https://api-festit.herokuapp.com/api/festival/${this.props.idfestival}`)
+        axios.delete(`https://api-festival.herokuapp.com/api/festival/${this.props.idfestival}`)
         .then(response => {
             alert(`Le festival ${this.props.name} a bien été supprimé`);
           })

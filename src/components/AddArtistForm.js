@@ -28,7 +28,7 @@ class AddArtistForm extends React.Component {
 
     submitForm = (event) => {
         event.preventDefault();
-        const url = 'https://api-festit.herokuapp.com/api/artists';
+        const url = 'https://api-festival.herokuapp.com/api/artists';
         axios.post(url, this.state)
             .then(res => res.data)
             .then(res => {

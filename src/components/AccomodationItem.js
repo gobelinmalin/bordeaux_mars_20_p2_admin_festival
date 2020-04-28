@@ -6,7 +6,7 @@ import axios from 'axios';
 class AccomodationItem extends React.Component {
 
     deleteEvent = (idaccomodation) => {
-        axios.delete(`https://api-festit.herokuapp.com/api/accomodation/${this.props.idaccomodation}`)
+        axios.delete(`https://api-festival.herokuapp.com/api/accomodation/${this.props.idaccomodation}`)
         .then(response => {
             alert(`L'hébergement ${this.props.nameAccomodation} a bien été supprimé`);
           })

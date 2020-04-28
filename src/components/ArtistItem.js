@@ -5,7 +5,7 @@ import axios from 'axios';
 
 class ArtistItem extends React.Component {
     deleteArtist = (idartist) => {
-        axios.delete(`https://api-festit.herokuapp.com/api/artists/${this.props.idartist}`)
+        axios.delete(`https://api-festival.herokuapp.com/api/artists/${this.props.idartist}`)
         .then(response => {
             alert(`L'artiste ${this.props.name} a bien été supprimé`);
           })

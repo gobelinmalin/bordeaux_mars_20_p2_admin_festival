@@ -36,7 +36,7 @@ class AddAccomodationForm extends React.Component {
 
     submitForm = (event) => {
         event.preventDefault();
-        const url = 'https://api-festit.herokuapp.com/api/accomodation';
+        const url = 'https://api-festival.herokuapp.com/api/accomodation';
         axios.post(url, this.state)
             .then(res => res.data)
             .then(res => {

@@ -14,7 +14,7 @@ class ArtistList extends React.Component {
         skeleton: true
     }
     componentDidMount() {
-        axios.get('https://api-festit.herokuapp.com/api/artists')
+        axios.get('https://api-festival.herokuapp.com/api/artists')
         .then(response => response.data)
         .then(data => {
             this.setState({ artists: data, skeleton: false })

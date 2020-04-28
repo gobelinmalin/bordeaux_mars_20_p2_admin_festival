@@ -30,7 +30,7 @@ class AddEventForm extends React.Component {
 
     submitForm = (event) => {
         event.preventDefault();
-        const url = 'https://api-festit.herokuapp.com/api/festival';
+        const url = 'https://api-festival.herokuapp.com/api/festival';
         axios.post(url, this.state)
             .then(res => res.data)
             .then(res => {
