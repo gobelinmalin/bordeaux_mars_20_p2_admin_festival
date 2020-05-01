@@ -3,31 +3,59 @@ import { Link } from 'react-router-dom';
 import '../style.css';
 import ButtonAction from './Buttons/ButtonAction';
 import axios from 'axios';
+import Modal from 'react-bootstrap/Modal';
 
 class AccomodationItem extends React.Component {
-
-    deleteEvent = (idaccomodation) => {
+    constructor(props) {
+        super(props);
+        this.state = {
+            show: false
+        }
+    }
+    deleteEvent = () => {
         axios.delete(`https://api-festival.herokuapp.com/api/accomodation/${this.props.idaccomodation}`)
         .then(response => {
-            alert(`L'hébergement ${this.props.nameAccomodation} a bien été supprimé`);
+            //alert(`L'hébergement ${this.props.nameAccomodation} a bien été supprimé`);
+            this.refreshPage();
           })
           .catch(err => {
             alert(`Erreur lors de la suppression de l'hébergement : ${err.message}`);
           });
     }
 
-    // deleteEvent = (idaccomodation) => {
-    //     axios.delete(`https://api-festival.herokuapp.com/api/accomodation/${this.props.idaccomodation}`)
-    //     .then(response => {
-    //         alert(`L'hébergement a bien été supprimé`);
-    //       })
-    //       .catch(err => {
-    //         alert(`Erreur lors de la suppression de l'hébergement : ${err.message}`);
-    //       });
-    // }
+    handleClose = () => {
+        this.setState({ show: false });
+    }
+
+    handleShow = () => {
+        this.setState({ show: true });
+    }
+
+    refreshPage = () => {
+        window.location.reload(false);
+    }
 
     render() {
         return (
+            <>
+            <Modal size="lg" show={this.state.show} onHide={this.handleClose}>
+                <Modal.Header closeButton>
+                <Modal.Title>Supprimer le logement {this.props.nameAccomodation}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Êtes-vous sûr de vouloir supprimer cet hébergement ?</Modal.Body>
+                <Modal.Footer>
+                <button className="ButtonAction Cancel" onClick={this.handleClose}>
+                    Annuler
+                </button>
+                <button className="Delete ButtonAction" onClick={() => {
+                    this.deleteEvent();
+                    this.handleClose();
+                    }}>
+                    Supprimer
+                </button>
+                </Modal.Footer>
+            </Modal>
+
             <div className="container">
                 <div className="Card">
                     <div className="InfoUp">
@@ -43,8 +71,10 @@ class AccomodationItem extends React.Component {
                             </div>
                         </div>
                         <div className="buttons col-md-4">
-                        <Link to={`/update-accomodation/${this.props.idaccomodation}`}><ButtonAction name="Modifier" class="Update"/></Link>
-                            <ButtonAction name="Supprimer" class="Delete" onClick={() => this.deleteEvent(this.props.idaccomodation)}/>
+                            <Link to={`/update-accomodation/${this.props.idaccomodation}`}><ButtonAction name="Modifier" class="Update"/></Link>
+                            <button onClick={this.handleShow} className="Delete ButtonAction"> 
+                                Supprimer
+                            </button>
                         </div>
                     </div>
                     <div className="Description col-md-12">
@@ -53,6 +83,7 @@ class AccomodationItem extends React.Component {
                     </div>
                 </div>
             </div>
+            </>
         )
     }
 }

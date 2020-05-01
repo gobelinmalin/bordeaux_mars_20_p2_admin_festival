@@ -35,20 +35,10 @@ class FestivalItem extends React.Component {
         window.location.reload(false);
     }
 
-    // deleteEvent = (idfestival) => {
-    //     axios.delete(`https://api-festival.herokuapp.com/api/festival/${this.props.idfestival}`)
-    //     .then(response => {
-    //         alert(`Le festival a bien été supprimé`);
-    //       })
-    //       .catch(err => {
-    //         alert(`Erreur lors de la suppression du festival : ${err.message}`);
-    //       });
-    // }
-
     render() {
         return (
             <>
-            <Modal show={this.state.show} onHide={this.handleClose}>
+            <Modal size="lg" show={this.state.show} onHide={this.handleClose}>
                 <Modal.Header closeButton>
                 <Modal.Title>Supprimer le festival {this.props.name}</Modal.Title>
                 </Modal.Header>

@@ -3,30 +3,59 @@ import { Link } from 'react-router-dom';
 import '../style.css';
 import ButtonAction from './Buttons/ButtonAction';
 import axios from 'axios';
+import Modal from 'react-bootstrap/Modal';
 
 class ArtistItem extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            show: false
+        }
+    }
+
     deleteArtist = (idartist) => {
         axios.delete(`https://api-festival.herokuapp.com/api/artists/${this.props.idartist}`)
         .then(response => {
-            alert(`L'artiste ${this.props.name} a bien été supprimé`);
+            //alert(`L'artiste ${this.props.name} a bien été supprimé`);
+            this.refreshPage();
           })
           .catch(err => {
             alert(`Erreur lors de la suppression de l'artiste : ${err.message}`);
           });
     }
 
-    // deleteArtist = (idartist) => {
-    //     axios.delete(`https://api-festival.herokuapp.com/api/artists/${this.props.idartist}`)
-    //     .then(response => {
-    //         alert(`L'artiste a bien été supprimé`);
-    //       })
-    //       .catch(err => {
-    //         alert(`Erreur lors de la suppression de l'artiste : ${err.message}`);
-    //       });
-    // }
+    handleClose = () => {
+        this.setState({ show: false });
+    }
+
+    handleShow = () => {
+        this.setState({ show: true });
+    }
+
+    refreshPage = () => {
+        window.location.reload(false);
+    }
 
     render() {
         return (
+            <>
+            <Modal size="lg" show={this.state.show} onHide={this.handleClose}>
+                <Modal.Header closeButton>
+                <Modal.Title>Supprimer l'artiste {this.props.name}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Êtes-vous sûr de vouloir supprimer cet artiste ?</Modal.Body>
+                <Modal.Footer>
+                <button className="ButtonAction Cancel" onClick={this.handleClose}>
+                    Annuler
+                </button>
+                <button className="Delete ButtonAction" onClick={() => {
+                    this.deleteArtist();
+                    this.handleClose();
+                    }}>
+                    Supprimer
+                </button>
+                </Modal.Footer>
+            </Modal>
             <div className="container">
                 <div className="Card">
                     <div className="InfoUp">
@@ -43,7 +72,9 @@ class ArtistItem extends React.Component {
                         </div>
                         <div className="buttons col-md-4">
                             <Link to={`/update-artist/${this.props.idartist}`}><ButtonAction name="Modifier" class="Update"/></Link>
-                            <ButtonAction name="Supprimer" class="Delete" onClick={() => this.deleteArtist(this.props.idartist)}/>
+                            <button onClick={this.handleShow} className="Delete ButtonAction"> 
+                                Supprimer
+                            </button>
                         </div>
                     </div>
                     <div className="Description col-md-12">
@@ -53,6 +84,7 @@ class ArtistItem extends React.Component {
                     </div>
                 </div>
             </div>
+            </>
         )
     }
 }
