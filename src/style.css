@@ -162,6 +162,16 @@ h3 {
     background-color: rgb(114, 100, 165);
 }
 
+.Cancel {
+    background-color: #FFF;
+    border: 1px solid #000;
+    color: #000;
+}
+
+.Cancel:hover {
+    background-color: #EDEEF3;
+}
+
 .SaveForm {
     text-align: center;
     background-color: #9185BE;

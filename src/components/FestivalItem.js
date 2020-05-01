@@ -3,17 +3,36 @@ import { Link } from 'react-router-dom';
 import '../style.css';
 import ButtonAction from './Buttons/ButtonAction';
 import axios from 'axios';
+import Modal from 'react-bootstrap/Modal';
 
 class FestivalItem extends React.Component {
-    
-    deleteEvent = (idfestival) => {
+    constructor(props) {
+        super(props);
+        this.state = {
+            show: false
+        }
+    }
+    deleteEvent = () => {
         axios.delete(`https://api-festival.herokuapp.com/api/festival/${this.props.idfestival}`)
         .then(response => {
-            alert(`Le festival ${this.props.name} a bien été supprimé`);
+            //alert(`Le festival ${this.props.name} a bien été supprimé`);
+            this.refreshPage();
           })
           .catch(err => {
             alert(`Erreur lors de la suppression du festival : ${err.message}`);
           });
+    }
+
+    handleClose = () => {
+        this.setState({ show: false });
+    }
+
+    handleShow = () => {
+        this.setState({ show: true });
+    }
+
+    refreshPage = () => {
+        window.location.reload(false);
     }
 
     // deleteEvent = (idfestival) => {
@@ -28,6 +47,25 @@ class FestivalItem extends React.Component {
 
     render() {
         return (
+            <>
+            <Modal show={this.state.show} onHide={this.handleClose}>
+                <Modal.Header closeButton>
+                <Modal.Title>Supprimer le festival {this.props.name}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Êtes-vous sûr de vouloir supprimer ce festival ?</Modal.Body>
+                <Modal.Footer>
+                <button className="ButtonAction Cancel" onClick={this.handleClose}>
+                    Annuler
+                </button>
+                <button className="Delete ButtonAction" onClick={() => {
+                    this.deleteEvent();
+                    this.handleClose();
+                    }}>
+                    Supprimer
+                </button>
+                </Modal.Footer>
+            </Modal>
+            
             <div className="container">
                 <div className="Card">
                     <div className="InfoUp">
@@ -41,7 +79,9 @@ class FestivalItem extends React.Component {
                         </div>
                         <div className="buttons col-md-4">
                             <Link to={`/update-festival/${this.props.idfestival}`}><ButtonAction name="Modifier" class="Update"/></Link>
-                            <ButtonAction name="Supprimer" class="Delete" onClick={() => this.deleteEvent(this.props.idfestival)}/>
+                            <button onClick={this.handleShow} className="Delete ButtonAction"> 
+                                Supprimer
+                            </button>
                         </div>
                     </div>
                     <div className="Description col-md-12">
@@ -51,6 +91,7 @@ class FestivalItem extends React.Component {
                     </div>
                 </div>
             </div>
+            </>
         )
     }
 }
