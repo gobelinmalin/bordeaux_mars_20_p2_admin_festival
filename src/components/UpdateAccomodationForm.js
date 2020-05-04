@@ -32,7 +32,7 @@ class UpdateAccomodationForm extends React.Component {
 
     componentDidMount() {        
         const params = this.props.match.params;
-        axios.get(`https://api-festival.herokuapp.com/api/accomodation`)
+        axios.get(`https://api-festit.herokuapp.com/api/accomodation`)
         .then(response => response.data)
         .then(data => {
             this.setState({ inputs: data.filter(item => item.idaccomodation === Number(params.idaccomodation)) });
@@ -46,7 +46,7 @@ class UpdateAccomodationForm extends React.Component {
     submitForm = (event) => {
         event.preventDefault();
         const params = this.props.match.params;
-        const url = `https://api-festival.herokuapp.com/api/accomodation/${params.idaccomodation}`;
+        const url = `https://api-festit.herokuapp.com/api/accomodation/${params.idaccomodation}`;
         axios.put(url, this.state.inputs[0])
             .then(res => res.data)
             .then(res => {

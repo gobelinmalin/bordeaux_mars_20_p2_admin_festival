@@ -13,7 +13,7 @@ class AccomodationList extends React.Component {
         skeleton: true
     }
     componentDidMount() {
-        axios.get('https://api-festival.herokuapp.com/api/accomodation')
+        axios.get('https://api-festit.herokuapp.com/api/accomodation')
         .then(response => response.data)
         .then(data => {
             this.setState({ accomodations: data, skeleton: false })
@@ -21,7 +21,7 @@ class AccomodationList extends React.Component {
     }
 
     // componentDidMount() {
-    //     axios.get('https://api-festival.herokuapp.com/api/accomodation')
+    //     axios.get('https://api-festit.herokuapp.com/api/accomodation')
     //     .then(response => response.data)
     //     .then(data => {
     //         this.setState({ accomodations: data, skeleton: false })

@@ -26,7 +26,7 @@ class UpdateFestivalForm extends React.Component {
 
     componentDidMount() {        
         const params = this.props.match.params;
-        axios.get(`https://api-festival.herokuapp.com/api/festival`)
+        axios.get(`https://api-festit.herokuapp.com/api/festival`)
         .then(response => response.data)
         .then(data => {
             //console.log(data.filter(item => item.idfestival === Number(params.idfestival)), 'filter');
@@ -46,7 +46,7 @@ class UpdateFestivalForm extends React.Component {
     submitForm = (event) => {
         event.preventDefault();
         const params = this.props.match.params;
-        const url = `https://api-festival.herokuapp.com/api/festival/${params.idfestival}`;
+        const url = `https://api-festit.herokuapp.com/api/festival/${params.idfestival}`;
         axios.put(url, this.state.inputs[0])
             .then(res => res.data)
             .then(res => {

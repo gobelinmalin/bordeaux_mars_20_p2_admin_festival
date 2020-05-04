@@ -24,7 +24,7 @@ class UpdateArtistForm extends React.Component {
 
     componentDidMount() {        
         const params = this.props.match.params;
-        axios.get(`https://api-festival.herokuapp.com/api/artists`)
+        axios.get(`https://api-festit.herokuapp.com/api/artists`)
         .then(response => response.data)
         .then(data => {
             this.setState({ inputs: data.filter(item => item.idartist === Number(params.idartist)) });
@@ -38,7 +38,7 @@ class UpdateArtistForm extends React.Component {
     submitForm = (event) => {
         event.preventDefault();
         const params = this.props.match.params;
-        const url = `https://api-festival.herokuapp.com/api/artists/${params.idartist}`;
+        const url = `https://api-festit.herokuapp.com/api/artists/${params.idartist}`;
         axios.put(url, this.state.inputs[0])
             .then(res => res.data)
             .then(res => {
