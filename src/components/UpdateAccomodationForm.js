@@ -9,7 +9,7 @@ class UpdateAccomodationForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            inputs: [{
+            inputs: {
                 namePackage: '',
                 nameAccomodation: '',
                 passPrice: '',
@@ -26,28 +26,29 @@ class UpdateAccomodationForm extends React.Component {
                 placeAvailable: '',
                 airbnb: false,
                 description: ''
-            }]
+            }
         }
     }
 
     componentDidMount() {        
         const params = this.props.match.params;
-        axios.get(`https://api-festit.herokuapp.com/api/accomodation`)
+        axios.get(`https://api-festit.herokuapp.com/api/accomodation/${Number(params.idaccomodation)}`)
         .then(response => response.data)
         .then(data => {
-            this.setState({ inputs: data.filter(item => item.idaccomodation === Number(params.idaccomodation)) });
+            this.setState({ inputs: data[0] });
         })     
     }
 
     onChange = (event) => {
-        this.setState({ inputs: [{ [event.target.name]: event.target.value }] });
+        const { inputs } = this.state;
+        this.setState({ inputs : { ...inputs,  [event.target.name]: event.target.value}});
     }
 
     submitForm = (event) => {
         event.preventDefault();
         const params = this.props.match.params;
         const url = `https://api-festit.herokuapp.com/api/accomodation/${params.idaccomodation}`;
-        axios.put(url, this.state.inputs[0])
+        axios.put(url, this.state.inputs)
             .then(res => res.data)
             .then(res => {
                 alert(`L'hébergement a bien été modifié !`);
@@ -58,7 +59,7 @@ class UpdateAccomodationForm extends React.Component {
     }
 
     render() {
-        console.log(this.state.inputs[0], 'state');
+        console.log(this.state.inputs, 'state');
         return (
             <div>
                 <div className="container ActionBloc">
@@ -75,7 +76,7 @@ class UpdateAccomodationForm extends React.Component {
                                 className="form-control"
                                 name="nameAccomodation"
                                 onChange={this.onChange}
-                                value={this.state.inputs[0].nameAccomodation}
+                                value={this.state.inputs.nameAccomodation}
                                 />
                             </div>
                             <div className="form-group col-md-6">
@@ -85,7 +86,7 @@ class UpdateAccomodationForm extends React.Component {
                                 className="form-control"
                                 name="namePackage"
                                 onChange={this.onChange}
-                                value={this.state.inputs[0].namePackage}
+                                value={this.state.inputs.namePackage}
                                 />
                             </div>
                         </div>
@@ -97,7 +98,7 @@ class UpdateAccomodationForm extends React.Component {
                                 className="form-control"
                                 name="priceByNight"
                                 onChange={this.onChange}
-                                value={this.state.inputs[0].priceByNight}
+                                value={this.state.inputs.priceByNight}
                                 />
                             </div>
                             <div className="form-group col-md-4">
@@ -107,7 +108,7 @@ class UpdateAccomodationForm extends React.Component {
                                 className="form-control"
                                 name="price"
                                 onChange={this.onChange}
-                                value={this.state.inputs[0].price}
+                                value={this.state.inputs.price}
                                 />
                             </div>
                             <div className="form-group col-md-4">
@@ -117,7 +118,7 @@ class UpdateAccomodationForm extends React.Component {
                                 className="form-control"
                                 name="passPrice"
                                 onChange={this.onChange}
-                                value={this.state.inputs[0].passPrice}
+                                value={this.state.inputs.passPrice}
                                 />
                             </div>
                         </div>
@@ -129,7 +130,7 @@ class UpdateAccomodationForm extends React.Component {
                                 className="form-control"
                                 name="date"
                                 onChange={this.onChange}
-                                value={this.state.inputs[0].date}
+                                value={this.state.inputs.date}
                                 />
                             </div>
                             <div className="form-group col-md-6">
@@ -139,7 +140,7 @@ class UpdateAccomodationForm extends React.Component {
                                 className="form-control"
                                 name="hour"
                                 onChange={this.onChange}
-                                value={this.state.inputs[0].hour}
+                                value={this.state.inputs.hour}
                                 />
                             </div>
                         </div>
@@ -151,7 +152,7 @@ class UpdateAccomodationForm extends React.Component {
                                 className="form-control"
                                 name="numberPlace"
                                 onChange={this.onChange}
-                                value={this.state.inputs[0].numberPlace}
+                                value={this.state.inputs.numberPlace}
                                 />
                             </div>
                             <div className="form-group col-md-6">
@@ -161,7 +162,7 @@ class UpdateAccomodationForm extends React.Component {
                                 className="form-control"
                                 name="placeAvailable"
                                 onChange={this.onChange}
-                                value={this.state.inputs[0].placeAvailable}
+                                value={this.state.inputs.placeAvailable}
                                 />
                             </div>
                         </div>
@@ -173,19 +174,26 @@ class UpdateAccomodationForm extends React.Component {
                                 className="form-control"
                                 name="km"
                                 onChange={this.onChange}
-                                value={this.state.inputs[0].km}
+                                value={this.state.inputs.km}
                                 />
                             </div>
                             <div className=" col-md-6">
                                 <label htmlFor="airbnb">Partenariat Airbnb</label><br/>
                                 <BootstrapSwitchButton
-                                checked={false}
+                                checked={this.state.inputs.airbnb}
                                 name="airbnb"
                                 data-toggle="toggle"
                                 onstyle="success"
+                                // onChange={(checked) => {
+                                //     this.setState({ inputs: { airbnb: checked } })
+                                // }}
                                 onChange={(checked) => {
-                                    this.setState({ inputs: [{ airbnb: checked }] })
+                                    const { inputs } = this.state;
+                                    this.setState({ inputs : { ...inputs,  airbnb: checked}});
                                 }}
+                                // onChange={this.onChange}
+                                // onClick={true}
+                                value={this.state.inputs.airbnb}
                                 />
                             </div>
                         </div>
@@ -197,7 +205,7 @@ class UpdateAccomodationForm extends React.Component {
                             rows="4"
                             type="text"
                             onChange={this.onChange}
-                            value={this.state.inputs[0].description}
+                            value={this.state.inputs.description}
                             >
                             </textarea>
                         </div>
@@ -210,7 +218,7 @@ class UpdateAccomodationForm extends React.Component {
                             name="image1"
                             placeholder="https://..."
                             onChange={this.onChange}
-                            value={this.state.inputs[0].image1}
+                            value={this.state.inputs.image1}
                             />
                         </div>
                         <div className="form-group">
@@ -221,7 +229,7 @@ class UpdateAccomodationForm extends React.Component {
                             name="image2"
                             placeholder="https://..."
                             onChange={this.onChange}
-                            value={this.state.inputs[0].image2}
+                            value={this.state.inputs.image2}
                             />
                         </div>
                         <div className="form-group">
@@ -232,7 +240,7 @@ class UpdateAccomodationForm extends React.Component {
                             name="image3"
                             placeholder="https://..."
                             onChange={this.onChange}
-                            value={this.state.inputs[0].image3}
+                            value={this.state.inputs.image3}
                             />
                         </div>
                         <div className="form-group">
@@ -243,7 +251,7 @@ class UpdateAccomodationForm extends React.Component {
                             name="image4"
                             placeholder="https://..."
                             onChange={this.onChange}
-                            value={this.state.inputs[0].image4}
+                            value={this.state.inputs.image4}
                             />
                         </div>
                         <div className="col-sm-4 offset-sm-4">

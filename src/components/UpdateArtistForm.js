@@ -9,7 +9,7 @@ class UpdateArtistForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            inputs: [{
+            inputs: {
                 name: '',
                 image_url: '',
                 tracker_count: 0,
@@ -18,7 +18,7 @@ class UpdateArtistForm extends React.Component {
                 country: '',
                 id_style: '',
                 embed_video: ''
-            }]
+            }
         }
     }
 
