@@ -20,14 +20,6 @@ class ArtistList extends React.Component {
             this.setState({ artists: data, skeleton: false })
         });
     }
-
-    // componentDidMount() {
-    //     axios.get('https://api-festit.herokuapp.com/api/artists')
-    //     .then(response => response.data)
-    //     .then(data => {
-    //         this.setState({ artists: data, skeleton: false })
-    //     });
-    // }
     
     render() {
         return (

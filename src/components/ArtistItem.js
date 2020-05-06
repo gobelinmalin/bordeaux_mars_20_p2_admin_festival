@@ -9,19 +9,27 @@ class ArtistItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            show: false
+            show: false,
+            style: []
         }
     }
 
-    deleteArtist = (idartist) => {
+    deleteArtist = () => {
         axios.delete(`https://api-festit.herokuapp.com/api/artists/${this.props.idartist}`)
         .then(response => {
-            //alert(`L'artiste ${this.props.name} a bien été supprimé`);
             this.refreshPage();
           })
           .catch(err => {
             alert(`Erreur lors de la suppression de l'artiste : ${err.message}`);
           });
+    }
+
+    componentDidMount = () => {
+        axios.get(`https://api-festit.herokuapp.com/api/artists/${this.props.idartist}/style`)
+        .then(response => response.data)
+        .then(data => {
+            this.setState({ style: data})
+        });
     }
 
     handleClose = () => {
@@ -67,7 +75,7 @@ class ArtistItem extends React.Component {
                                 <h3>{this.props.name} <span className="IdItem">{`(id : ${this.props.idartist})`}</span></h3>
                             </div>
                             <div>
-                                <p>Genre, {this.props.country}</p>
+                                <p>Genre : {this.state.style[0] && this.state.style[0].name}, {this.props.country}</p>
                             </div>
                         </div>
                         <div className="buttons col-md-4">

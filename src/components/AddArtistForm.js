@@ -120,6 +120,7 @@ class AddArtistForm extends React.Component {
                         <div className="form-group">
                             <label htmlFor="id_style">ID du style de l'artiste</label>
                             <select className="form-control" onChange={this.onChange} value={this.state.value} id="id_style">
+                                <option>Tous</option>
                                 <StyleItem />
                             </select>
                         </div>

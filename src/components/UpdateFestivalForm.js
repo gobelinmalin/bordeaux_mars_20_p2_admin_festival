@@ -8,7 +8,7 @@ class UpdateFestivalForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            inputs: [{
+            inputs: {
                 name: '',
                 startDate: '',
                 endDate: '',
@@ -20,17 +20,17 @@ class UpdateFestivalForm extends React.Component {
                 image2: '',
                 image3: '',
                 image4: ''
-            }]
+            }
         }
     }
 
     componentDidMount() {        
         const params = this.props.match.params;
-        axios.get(`https://api-festit.herokuapp.com/api/festival`)
+        axios.get(`https://api-festit.herokuapp.com/api/festival/${Number(params.idfestival)}`)
         .then(response => response.data)
         .then(data => {
             //console.log(data.filter(item => item.idfestival === Number(params.idfestival)), 'filter');
-            this.setState({ inputs: data.filter(item => item.idfestival === Number(params.idfestival)) });
+            this.setState({ inputs: data[0]});
             //data.filter(item => item.idfestival === Number(params.idfestival)).map(item => this.setState({ inputs:  }));
             //data.filter(fest => fest.idfestival === params.idfestival).map(item => this.setState({ item: this.state.item }))
         })
@@ -38,16 +38,18 @@ class UpdateFestivalForm extends React.Component {
 
     onChange = (event) => {
         const { inputs } = this.state;
-        this.setState({ inputs: [{ [event.target.name]: event.target.value }] });
-        console.log([inputs[0][event.target.id]], 'event target console');
-        console.log(event.target.value, 'event value');
+
+        this.setState({ inputs : { ...inputs,  [event.target.name]: event.target.value}});
+
     }
 
     submitForm = (event) => {
         event.preventDefault();
         const params = this.props.match.params;
         const url = `https://api-festit.herokuapp.com/api/festival/${params.idfestival}`;
-        axios.put(url, this.state.inputs[0])
+
+
+        axios.put(url, this.state.inputs)
             .then(res => res.data)
             .then(res => {
                 alert(`Le festival a bien été modifié !`);
@@ -58,7 +60,7 @@ class UpdateFestivalForm extends React.Component {
     }
 
     render() {
-        console.log(this.state.inputs[0], 'state');
+        console.log(this.state.inputs, 'state');
         return (
             <div>
                 <div className="container ActionBloc">
@@ -75,7 +77,7 @@ class UpdateFestivalForm extends React.Component {
                                 className="form-control"
                                 name="name"
                                 onChange={this.onChange}
-                                value={this.state.inputs[0].name}
+                                value={this.state.inputs.name}
                                 />
                             </div>
                             <div className="form-group col-md-3">
@@ -85,7 +87,7 @@ class UpdateFestivalForm extends React.Component {
                                 className="form-control"
                                 name="startDate"
                                 onChange={this.onChange}
-                                value={this.state.inputs[0].startDate}
+                                value={this.state.inputs.startDate}
                                 />
                             </div>
                             <div className="form-group col-md-3">
@@ -95,7 +97,7 @@ class UpdateFestivalForm extends React.Component {
                                 className="form-control"
                                 name="endDate"
                                 onChange={this.onChange}
-                                value={this.state.inputs[0].endDate}
+                                value={this.state.inputs.endDate}
                                 />
                             </div>
                         </div>
@@ -107,7 +109,7 @@ class UpdateFestivalForm extends React.Component {
                                 className="form-control"
                                 name="city"
                                 onChange={this.onChange}
-                                value={this.state.inputs[0].city}
+                                value={this.state.inputs.city}
                                 />
                             </div>
                             <div className="form-group col-md-6">
@@ -117,7 +119,7 @@ class UpdateFestivalForm extends React.Component {
                                 className="form-control"
                                 name="country"
                                 onChange={this.onChange}
-                                value={this.state.inputs[0].country}
+                                value={this.state.inputs.country}
                                 />
                             </div>
                         </div>
@@ -128,7 +130,7 @@ class UpdateFestivalForm extends React.Component {
                             name="description"
                             rows="4"
                             onChange={this.onChange}
-                            value={this.state.inputs[0].description}
+                            value={this.state.inputs.description}
                             >
                             </textarea>
                         </div>
@@ -140,7 +142,7 @@ class UpdateFestivalForm extends React.Component {
                             name="url_video"
                             placeholder="URL du trailer du festival"
                             onChange={this.onChange}
-                            value={this.state.inputs[0].url_video}
+                            value={this.state.inputs.url_video}
                             />
                         </div>
                         <div className="form-group">
@@ -151,7 +153,7 @@ class UpdateFestivalForm extends React.Component {
                             name="image1"
                             placeholder="URL de l'illustration du festival"
                             onChange={this.onChange}
-                            value={this.state.inputs[0].image1}
+                            value={this.state.inputs.image1}
                             />
                         </div>
                         <p className="mandatory">Tous les champs ci-dessus sont obligatoires</p>
@@ -162,7 +164,7 @@ class UpdateFestivalForm extends React.Component {
                             className="form-control"
                             name="image2"
                             onChange={this.onChange}
-                            value={this.state.inputs[0].image2}
+                            value={this.state.inputs.image2}
                             />
                         </div>
                         <div className="form-group">
@@ -172,7 +174,7 @@ class UpdateFestivalForm extends React.Component {
                             className="form-control"
                             name="image3"
                             onChange={this.onChange}
-                            value={this.state.inputs[0].image3}
+                            value={this.state.inputs.image3}
                             />
                         </div>
                         <div className="form-group">
@@ -182,7 +184,7 @@ class UpdateFestivalForm extends React.Component {
                             className="form-control"
                             name="image4"
                             onChange={this.onChange}
-                            value={this.state.inputs[0].image4}
+                            value={this.state.inputs.image4}
                             />
                         </div>
                         <div className="col-sm-4 offset-sm-4">
