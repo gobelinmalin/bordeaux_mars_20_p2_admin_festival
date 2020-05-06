@@ -9,42 +9,38 @@ class AddEventForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
-            startDate: '',
-            endDate: '',
-            city: '',
-            country: '',
-            description: '',
-            url_video: '',
-            image1: '',
-            image2: '',
-            image3: '',
-            image4: ''
+            inputs: {
+                name: '',
+                startDate: '',
+                endDate: '',
+                city: '',
+                country: '',
+                description: '',
+                url_video: '',
+                image1: '',
+                image2: '',
+                image3: '',
+                image4: ''
+            }
         }
     }
 
     onChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value
-        });
+        const { inputs } = this.state;
+        this.setState({ inputs : { ...inputs,  [event.target.name]: event.target.value}});
     }
 
     submitForm = (event) => {
         event.preventDefault();
         const url = 'https://api-festit.herokuapp.com/api/festival';
-        axios.post(url, this.state)
+        axios.post(url, this.state.inputs)
             .then(res => res.data)
             .then(res => {
                 //alert(`Le festival ${this.state.name} a bien été ajouté !`);
-                this.handleShow();
             })
             .catch(e => {
                 alert(`Erreur lors de l'ajout du festival : ${event.message}`);
             });
-    }
-
-    handleClose = () => {
-        this.setState({ show: false });
     }
 
     handleShow = () => {
@@ -52,7 +48,7 @@ class AddEventForm extends React.Component {
     }
 
     render() {
-        console.log(this.state);
+        console.log(this.state.inputs);
         return (
             <>
             <Modal size="lg" show={this.state.show} onHide={this.handleClose}>
@@ -60,11 +56,11 @@ class AddEventForm extends React.Component {
                 <Modal.Title>Le festival {this.state.name} a bien été ajouté !</Modal.Title>
                 </Modal.Header>
                 <Modal.Footer>
-                <button className="Delete ButtonAction" onClick={() => {
-                    this.handleClose();
-                    }}>
+                <Link to="/"><button
+                    className="ButtonAction Cancel"
+                    >
                     Ok
-                </button>
+                </button></Link>
                 </Modal.Footer>
             </Modal>
             <div>
@@ -82,7 +78,7 @@ class AddEventForm extends React.Component {
                                 className="form-control"
                                 name="name"
                                 onChange={this.onChange}
-                                value={this.state.value}
+                                value={this.state.inputs.value}
                                 />
                             </div>
                             <div className="form-group col-md-3">
@@ -92,7 +88,7 @@ class AddEventForm extends React.Component {
                                 className="form-control"
                                 name="startDate"
                                 onChange={this.onChange}
-                                value={this.state.value}
+                                value={this.state.inputs.value}
                                 />
                             </div>
                             <div className="form-group col-md-3">
@@ -102,7 +98,7 @@ class AddEventForm extends React.Component {
                                 className="form-control"
                                 name="endDate"
                                 onChange={this.onChange}
-                                value={this.state.value}
+                                value={this.state.inputs.value}
                                 />
                             </div>
                         </div>
@@ -114,7 +110,7 @@ class AddEventForm extends React.Component {
                                 className="form-control"
                                 name="city"
                                 onChange={this.onChange}
-                                value={this.state.value}
+                                value={this.state.inputs.value}
                                 />
                             </div>
                             <div className="form-group col-md-6">
@@ -124,7 +120,7 @@ class AddEventForm extends React.Component {
                                 className="form-control"
                                 name="country"
                                 onChange={this.onChange}
-                                value={this.state.value}
+                                value={this.state.inputs.value}
                                 />
                             </div>
                         </div>
@@ -135,7 +131,7 @@ class AddEventForm extends React.Component {
                             name="description"
                             rows="4"
                             onChange={this.onChange}
-                            value={this.state.value}
+                            value={this.state.inputs.value}
                             >
                             </textarea>
                         </div>
@@ -147,7 +143,7 @@ class AddEventForm extends React.Component {
                             name="url_video"
                             placeholder="URL du trailer du festival"
                             onChange={this.onChange}
-                            value={this.state.value}
+                            value={this.state.inputs.value}
                             />
                         </div>
                         <div className="form-group">
@@ -158,7 +154,7 @@ class AddEventForm extends React.Component {
                             name="image1"
                             placeholder="URL de l'illustration du festival"
                             onChange={this.onChange}
-                            value={this.state.value}
+                            value={this.state.inputs.value}
                             />
                         </div>
                         <p className="mandatory">Tous les champs ci-dessus sont obligatoires</p>
@@ -169,7 +165,7 @@ class AddEventForm extends React.Component {
                             className="form-control"
                             name="image2"
                             onChange={this.onChange}
-                            value={this.state.value}
+                            value={this.state.inputs.value}
                             />
                         </div>
                         <div className="form-group">
@@ -179,7 +175,7 @@ class AddEventForm extends React.Component {
                             className="form-control"
                             name="image3"
                             onChange={this.onChange}
-                            value={this.state.value}
+                            value={this.state.inputs.value}
                             />
                         </div>
                         <div className="form-group">
@@ -189,11 +185,11 @@ class AddEventForm extends React.Component {
                             className="form-control"
                             name="image4"
                             onChange={this.onChange}
-                            value={this.state.value}
+                            value={this.state.inputs.value}
                             />
                         </div>
                         <div className="col-sm-4 offset-sm-4">
-                            <input type="submit" className="SaveForm" value="Enregistrer" />
+                            <button type="submit" onClick={this.handleShow} className="SaveForm ButtonAction">Enregistrer</button>
                         </div>
                     </form>
                 </div>
