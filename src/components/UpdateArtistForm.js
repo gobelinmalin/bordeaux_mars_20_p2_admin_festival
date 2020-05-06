@@ -24,22 +24,23 @@ class UpdateArtistForm extends React.Component {
 
     componentDidMount() {        
         const params = this.props.match.params;
-        axios.get(`https://api-festit.herokuapp.com/api/artists`)
+        axios.get(`https://api-festit.herokuapp.com/api/artists/id/${Number(params.idartist)}`)
         .then(response => response.data)
         .then(data => {
-            this.setState({ inputs: data.filter(item => item.idartist === Number(params.idartist)) });
+            this.setState({ inputs: data[0] });
         })     
     }
 
     onChange = (event) => {
-        this.setState({ inputs: [{ [event.target.name]: event.target.value }] });
+        const { inputs } = this.state;
+        this.setState({ inputs : { ...inputs,  [event.target.name]: event.target.value}});
     }
 
     submitForm = (event) => {
         event.preventDefault();
         const params = this.props.match.params;
         const url = `https://api-festit.herokuapp.com/api/artists/${params.idartist}`;
-        axios.put(url, this.state.inputs[0])
+        axios.put(url, this.state.inputs)
             .then(res => res.data)
             .then(res => {
                 alert(`L'artiste a bien été modifié !`);
@@ -50,7 +51,7 @@ class UpdateArtistForm extends React.Component {
     }
     
     render() {
-        console.log(this.state.inputs[0], 'state');
+        console.log(this.state.inputs, 'state');
         return (
             <div>
                 <div className="container ActionBloc">
@@ -67,7 +68,7 @@ class UpdateArtistForm extends React.Component {
                                 className="form-control"
                                 name="name"
                                 onChange={this.onChange}
-                                value={this.state.inputs[0].name}
+                                value={this.state.inputs.name}
                                 />
                             </div>
                             <div className="form-group col-md-6">
@@ -77,7 +78,7 @@ class UpdateArtistForm extends React.Component {
                                 className="form-control"
                                 name="country"
                                 onChange={this.onChange}
-                                value={this.state.inputs[0].country}
+                                value={this.state.inputs.country}
                                 />
                             </div>
                         </div>
@@ -89,7 +90,7 @@ class UpdateArtistForm extends React.Component {
                             name="image_url"
                             placeholder="https://..."
                             onChange={this.onChange}
-                            value={this.state.inputs[0].image_url}
+                            value={this.state.inputs.image_url}
                             />
                         </div>
                         <div className="form-group">
@@ -100,7 +101,7 @@ class UpdateArtistForm extends React.Component {
                             name="music_url"
                             placeholder="https://..."
                             onChange={this.onChange}
-                            value={this.state.inputs[0].music_url}
+                            value={this.state.inputs.music_url}
                             />
                         </div>
                         <div className="form-group">
@@ -111,7 +112,7 @@ class UpdateArtistForm extends React.Component {
                             name="embed_video"
                             placeholder='<iframe width="560" height="315" src="..."></iframe>'
                             onChange={this.onChange}
-                            value={this.state.inputs[0].value}
+                            value={this.state.inputs.embed_video}
                             />
                         </div>
                         <div className="form-group">
@@ -119,7 +120,7 @@ class UpdateArtistForm extends React.Component {
                             <select 
                             className="form-control"
                             onChange={this.onChange}
-                            value={this.state.inputs[0].id_style} name="id_style">
+                            value={this.state.inputs.id_style} name="id_style">
                                 <StyleItem />
                             </select>
                         </div>
@@ -131,7 +132,7 @@ class UpdateArtistForm extends React.Component {
                             rows="4"
                             type="text"
                             onChange={this.onChange}
-                            value={this.state.inputs[0].description}
+                            value={this.state.inputs.description}
                             >
                             </textarea>
                         </div>
