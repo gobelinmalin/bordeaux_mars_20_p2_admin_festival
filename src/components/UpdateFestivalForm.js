@@ -38,7 +38,6 @@ class UpdateFestivalForm extends React.Component {
 
     onChange = (event) => {
         const { inputs } = this.state;
-
         this.setState({ inputs : { ...inputs,  [event.target.name]: event.target.value}});
 
     }
