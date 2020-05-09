@@ -42,6 +42,7 @@ class ArtistList extends React.Component {
                         image_url={item.image_url}
                         music_url={item.music_url}
                         country={item.country}
+                        description={item.description}
                     />
                     )}
                 </section>

@@ -105,6 +105,11 @@ h2 {
     margin-top: 50px;
 }
 
+.Checkbox {
+    display: flex;
+    justify-content: space-around;
+}
+
 /* CARDS */
 
 .Card {
@@ -209,8 +214,14 @@ h3 {
     .InfoUp {
         flex-direction: column !important;
         margin-bottom: 15px;
+        text-align: center;
     }
-    
+    .buttons {
+        text-align: center;
+    }
+    .Description {
+        text-align: center;
+    }
 }
 
 /* SKELETONS */

@@ -67,10 +67,10 @@ class ArtistItem extends React.Component {
             <div className="container">
                 <div className="Card">
                     <div className="InfoUp">
-                        <div className="col-md-1">
+                        <div className="col-lg-1 col-md-12">
                             <img src={this.props.image_url} className="img-round" alt={this.props.name}/>
                         </div>
-                        <div className="col-md-7">
+                        <div className="col-lg-5 col-md-12">
                             <div>
                                 <h3>{this.props.name} <span className="IdItem">{`(id : ${this.props.idartist})`}</span></h3>
                             </div>
@@ -78,7 +78,8 @@ class ArtistItem extends React.Component {
                                 <p>Genre : {this.state.style[0] && this.state.style[0].name}, {this.props.country}</p>
                             </div>
                         </div>
-                        <div className="buttons col-md-4">
+                        <div className="buttons col-lg-6 col-md-12">
+                            <Link to={`/join-artist/${this.props.idartist}`}><ButtonAction name="Lier" class="Cancel"/></Link>
                             <Link to={`/update-artist/${this.props.idartist}`}><ButtonAction name="Modifier" class="Update"/></Link>
                             <button onClick={this.handleShow} className="Delete ButtonAction"> 
                                 Supprimer
@@ -87,7 +88,10 @@ class ArtistItem extends React.Component {
                     </div>
                     <div className="Description col-md-12">
                         <p>
-                            {this.props.music_url}
+                            {this.props.description}  
+                        </p>
+                        <p>
+                            <a href={`${this.props.music_url}`} target="_blank">Voir le clip</a>    
                         </p>
                     </div>
                 </div>

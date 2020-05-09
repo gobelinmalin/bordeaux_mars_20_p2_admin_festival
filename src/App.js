@@ -14,6 +14,7 @@ import AddAccomodationForm from './components/AddAccomodationForm';
 import UpdateFestivalForm from './components/UpdateFestivalForm';
 import UpdateArtistForm from './components/UpdateArtistForm';
 import UpdateAccomodationForm from './components/UpdateAccomodationForm';
+import JoinArtist from './components/FestivalCheckbox';
 
 function App() {
   return (
@@ -48,6 +49,9 @@ function App() {
       </Switch>
       <Switch>
           <Route path="/update-accomodation/:idaccomodation" component={UpdateAccomodationForm} />
+      </Switch>
+      <Switch>
+          <Route path="/join-artist/:idartist" component={JoinArtist} />
       </Switch>
     </div>
     

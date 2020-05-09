@@ -30,7 +30,7 @@ class UpdateFestivalForm extends React.Component {
         axios.get(`https://api-festit.herokuapp.com/api/festival/${Number(params.idfestival)}`)
         .then(response => response.data)
         .then(data => {
-            //console.log(data.filter(item => item.idfestival === Number(params.idfestival)), 'filter');
+            //console.log(data.filter(item => item.idnpmfestival === Number(params.idfestival)), 'filter');
             this.setState({ inputs: data[0]});
             //data.filter(item => item.idfestival === Number(params.idfestival)).map(item => this.setState({ inputs:  }));
             //data.filter(fest => fest.idfestival === params.idfestival).map(item => this.setState({ item: this.state.item }))

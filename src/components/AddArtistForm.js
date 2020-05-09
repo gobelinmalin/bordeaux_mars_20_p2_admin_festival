@@ -5,6 +5,7 @@ import StyleItem from './StyleItem';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
+import FestivalCheckbox from './FestivalCheckbox';
 
 class AddArtistForm extends React.Component {
     constructor(props) {
@@ -19,7 +20,8 @@ class AddArtistForm extends React.Component {
                 country: '',
                 id_style: '',
                 embed_video: ''
-            }
+            },
+            festivalsChecked: []
         }
     }
 
@@ -34,25 +36,11 @@ class AddArtistForm extends React.Component {
         axios.post(url, this.state.inputs)
             .then(res => res.data)
             .then(res => {
-                //alert(`L'artiste ${this.state.name} a bien été ajouté !`);
             })
             .catch(event => {
                 alert(`Erreur lors de l'ajout de l'artiste : ${event.message}`);
             });
     }
-
-    // submitForm = (event) => {
-    //     event.preventDefault();
-    //     const url = 'https://api-festit.herokuapp.com/api/artists';
-    //     axios.post(url, this.state)
-    //         .then(res => res.data)
-    //         .then(res => {
-    //             alert(`L'artiste ${this.state.name} a bien été ajouté !`);
-    //         })
-    //         .catch(event => {
-    //             alert(`Erreur lors de l'ajout de l'artiste : ${event.message}`);
-    //         });
-    // }
 
     handleShow = () => {
         this.setState({ show: true });
@@ -79,7 +67,7 @@ class AddArtistForm extends React.Component {
                 <Link to="/artists"><ButtonReturn /></Link>
             </div>
             <div className="container ContainerBody">
-                <form onSubmit={this.submitForm}>
+                <form onSubmit={() => {this.submitForm();this.handleCheckbox()}} ref={form => this.form = form}>
                     <div className="form-row">
                         <div className="form-group col-md-6">
                             <label htmlFor="name">Nom</label>
@@ -153,6 +141,10 @@ class AddArtistForm extends React.Component {
                         value={this.state.inputs.value}
                         >
                         </textarea>
+                    </div>
+                    <p>Participation à des festivals</p>
+                    <div className="Checkbox mb-3">
+                        <FestivalCheckbox/>
                     </div>
                     <p className="mandatory">Tous les champs ci-dessus sont obligatoires</p>
                     <div className="col-sm-4 offset-sm-4">

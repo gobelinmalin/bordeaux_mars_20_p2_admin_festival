@@ -5,6 +5,7 @@ import StyleItem from './StyleItem';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
+import FestivalCheckbox from './FestivalCheckbox';
 
 class UpdateArtistForm extends React.Component {
     constructor(props) {
@@ -43,9 +44,6 @@ class UpdateArtistForm extends React.Component {
         const url = `https://api-festit.herokuapp.com/api/artists/${params.idartist}`;
         axios.put(url, this.state.inputs)
             .then(res => res.data)
-            .then(res => {
-                //alert(`L'artiste a bien été modifié !`);
-            })
             .catch(event => {
                 alert(`Erreur lors de la modification de l'artiste : ${event.message}`);
             });
