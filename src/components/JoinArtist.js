@@ -1,13 +1,12 @@
 import React from 'react';
 import '../style.css';
 import ButtonReturn from './Buttons/ButtonReturn';
-import StyleItem from './StyleItem';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
 import FestivalCheckbox from './FestivalCheckbox';
 
-class UpdateArtistForm extends React.Component {
+class JoinArtist extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -110,4 +109,4 @@ class UpdateArtistForm extends React.Component {
     
 }
 
-export default UpdateArtistForm;
+export default JoinArtist;

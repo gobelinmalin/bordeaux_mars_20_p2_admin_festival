@@ -14,7 +14,7 @@ import AddAccomodationForm from './components/AddAccomodationForm';
 import UpdateFestivalForm from './components/UpdateFestivalForm';
 import UpdateArtistForm from './components/UpdateArtistForm';
 import UpdateAccomodationForm from './components/UpdateAccomodationForm';
-import JoinArtist from './components/FestivalCheckbox';
+import JoinArtist from './components/JoinArtist';
 
 function App() {
   return (
