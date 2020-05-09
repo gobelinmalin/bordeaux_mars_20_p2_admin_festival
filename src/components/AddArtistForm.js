@@ -20,8 +20,7 @@ class AddArtistForm extends React.Component {
                 country: '',
                 id_style: '',
                 embed_video: ''
-            },
-            festivalsChecked: []
+            }
         }
     }
 
@@ -67,7 +66,7 @@ class AddArtistForm extends React.Component {
                 <Link to="/artists"><ButtonReturn /></Link>
             </div>
             <div className="container ContainerBody">
-                <form onSubmit={() => {this.submitForm();this.handleCheckbox()}} ref={form => this.form = form}>
+                <form onSubmit={this.submitForm}>
                     <div className="form-row">
                         <div className="form-group col-md-6">
                             <label htmlFor="name">Nom</label>
@@ -141,10 +140,6 @@ class AddArtistForm extends React.Component {
                         value={this.state.inputs.value}
                         >
                         </textarea>
-                    </div>
-                    <p>Participation à des festivals</p>
-                    <div className="Checkbox mb-3">
-                        <FestivalCheckbox/>
                     </div>
                     <p className="mandatory">Tous les champs ci-dessus sont obligatoires</p>
                     <div className="col-sm-4 offset-sm-4">
