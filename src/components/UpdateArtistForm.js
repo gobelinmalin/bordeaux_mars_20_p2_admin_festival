@@ -5,7 +5,6 @@ import StyleItem from './StyleItem';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
-import FestivalCheckbox from './FestivalCheckbox';
 
 class UpdateArtistForm extends React.Component {
     constructor(props) {

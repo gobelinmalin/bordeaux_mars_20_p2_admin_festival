@@ -6,26 +6,34 @@ import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
 import FestivalCheckbox from './FestivalCheckbox';
 
-class JoinArtist extends React.Component {
+class JoinAccomodation extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             inputs: {
-                name: '',
-                image_url: '',
-                tracker_count: 0,
-                music_url: '',
-                description: '',
-                country: '',
-                id_style: '',
-                embed_video: ''
+                namePackage: '',
+                nameAccomodation: '',
+                passPrice: '',
+                priceByNight: '',
+                price: '',
+                date: '',
+                hour: '',
+                image1: '',
+                image2: '',
+                image3: '',
+                image4: '',
+                numberPlace: '',
+                km: '',
+                placeAvailable: '',
+                airbnb: false,
+                description: ''
             }
         }
     }
 
     componentDidMount() {        
         const params = this.props.match.params;
-        axios.get(`https://api-festit.herokuapp.com/api/artists/id/${Number(params.idartist)}`)
+        axios.get(`https://api-festit.herokuapp.com/api/accomodation/${Number(params.idaccomodation)}`)
         .then(response => response.data)
         .then(data => {
             this.setState({ inputs: data[0] });
@@ -40,7 +48,7 @@ class JoinArtist extends React.Component {
         const checkedCheckboxesValues = checkedCheckboxes.map(input => input.value);
         console.log('checked array values:', checkedCheckboxesValues);
         const urlPut = checkedCheckboxesValues.map(item => 
-            `https://api-festit.herokuapp.com/api/festival/${item}/artists/${this.state.inputs.idartist}`);
+            `https://api-festit.herokuapp.com/api/festival/${item}/accomodations/${this.state.inputs.idaccomodation}`);
         console.log(urlPut);
         const axiosPut = urlPut.map(item => 
             `axios.put(${item})`);
@@ -66,7 +74,7 @@ class JoinArtist extends React.Component {
                 <Modal.Header closeButton>
                 <Modal.Title>Jointures sauvegardées</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>L'artiste est maintenant associé à un ou plusieurs festivals.</Modal.Body>
+                <Modal.Body>L'hébergement est maintenant associé à un ou plusieurs festivals.</Modal.Body>
                 <Modal.Footer>
                 <Link to="/artists"><button
                     className="ButtonAction Cancel"
@@ -76,7 +84,7 @@ class JoinArtist extends React.Component {
                 </Modal.Footer>
             </Modal>
             <div className="container ActionBloc">
-                <p className="title">Lier {this.state.inputs.name} à un ou plusieurs festivals</p>
+                <p className="title">Lier {this.state.inputs.nameAccomodation} à un ou plusieurs festivals</p>
                 <Link to="/artists"><ButtonReturn /></Link>
             </div>
             <div className="container ContainerBody">
@@ -95,4 +103,4 @@ class JoinArtist extends React.Component {
     
 }
 
-export default JoinArtist;
+export default JoinAccomodation;

@@ -20,14 +20,16 @@ class AddEventForm extends React.Component {
                 image1: '',
                 image2: '',
                 image3: '',
-                image4: ''
+                image4: '',
+                priceFullPass: 0,
+                priceDayPass: 0
             }
         }
     }
 
     onChange = (event) => {
         const { inputs } = this.state;
-        this.setState({ inputs : { ...inputs,  [event.target.name]: event.target.value}});
+        this.setState({ inputs : { ...inputs,  [event.target.name]: event.target.name === 'priceFullPass' || event.target.name === 'priceDayPass' ? parseFloat(event.target.value) : event.target.value}});
     }
 
     submitForm = (event) => {
@@ -103,7 +105,7 @@ class AddEventForm extends React.Component {
                             </div>
                         </div>
                         <div className="form-row">
-                            <div className="form-group col-md-6">
+                            <div className="form-group col-md-3">
                                 <label htmlFor="city">Ville</label>
                                 <input
                                 type="text"
@@ -113,12 +115,32 @@ class AddEventForm extends React.Component {
                                 value={this.state.inputs.value}
                                 />
                             </div>
-                            <div className="form-group col-md-6">
+                            <div className="form-group col-md-3">
                                 <label htmlFor="country">Pays</label>
                                 <input
                                 type="text"
                                 className="form-control"
                                 name="country"
+                                onChange={this.onChange}
+                                value={this.state.inputs.value}
+                                />
+                            </div>
+                            <div className="form-group col-md-3">
+                                <label htmlFor="priceFullPass">Prix FullPass</label>
+                                <input
+                                type="number"
+                                className="form-control"
+                                name="priceFullPass"
+                                onChange={this.onChange}
+                                value={this.state.inputs.value}
+                                />
+                            </div>
+                            <div className="form-group col-md-3">
+                                <label htmlFor="priceDayPass">Prix DayPass</label>
+                                <input
+                                type="number"
+                                className="form-control"
+                                name="priceDayPass"
                                 onChange={this.onChange}
                                 value={this.state.inputs.value}
                                 />

@@ -62,7 +62,7 @@ class AccomodationItem extends React.Component {
                         <div className="col-md-1">
                             <img src={this.props.image1} className="img-round" alt={this.props.nameAccomodation}/>
                         </div>
-                        <div className="col-md-7">
+                        <div className="col-md-6">
                             <div>
                                 <h3>{this.props.nameAccomodation} <span className="IdItem">{`(id : ${this.props.idaccomodation})`}</span></h3>
                             </div>
@@ -70,7 +70,8 @@ class AccomodationItem extends React.Component {
                                 <p>{this.props.soldOut ? "Sold Out" : "Disponible"} | Prix avec Pass : {this.props.passPrice}€ | Prix par nuit : {this.props.priceByNight}€</p>
                             </div>
                         </div>
-                        <div className="buttons col-md-4">
+                        <div className="buttons col-md-5">
+                            <Link to={`/join-accomodation/${this.props.idaccomodation}`}><ButtonAction name="Lier" class="Cancel"/></Link>
                             <Link to={`/update-accomodation/${this.props.idaccomodation}`}><ButtonAction name="Modifier" class="Update"/></Link>
                             <button onClick={this.handleShow} className="Delete ButtonAction"> 
                                 Supprimer

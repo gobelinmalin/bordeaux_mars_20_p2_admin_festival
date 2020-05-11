@@ -91,7 +91,7 @@ class ArtistItem extends React.Component {
                             {this.props.description}  
                         </p>
                         <p>
-                            <a href={`${this.props.music_url}`} target="_blank">Voir le clip</a>    
+                            <a href={`${this.props.music_url}`} target="_blank" rel="noopener noreferrer">Voir le clip</a>    
                         </p>
                     </div>
                 </div>
