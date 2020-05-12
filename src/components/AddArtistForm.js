@@ -171,6 +171,9 @@ class AddArtistForm extends React.Component {
                         >
                         </textarea>
                     </div>
+                    <div>
+                        <p>Lier cet hébergement à un ou plusieurs festival</p>
+                    </div>
                     <div className="Checkbox mb-3">
                         <FestivalCheckbox/>
                     </div>

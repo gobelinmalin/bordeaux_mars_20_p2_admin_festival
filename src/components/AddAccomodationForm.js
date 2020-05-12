@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import BootstrapSwitchButton from 'bootstrap-switch-button-react';
 import Modal from 'react-bootstrap/Modal';
+import FestivalCheckbox from './FestivalCheckbox';
 
 class AddAccomodationForm extends React.Component {
     constructor(props) {
@@ -27,8 +28,17 @@ class AddAccomodationForm extends React.Component {
                 placeAvailable: '',
                 airbnb: false,
                 description: ''
-            }
+            },
+            getId: []
         }
+    }
+
+    componentDidMount = () => {
+        axios.get('https://api-festit.herokuapp.com/api/accomodation')
+        .then(response => response.data)
+        .then(data => {
+            this.setState({ getId: data })
+        });
     }
 
     onChange = (event) => {
@@ -39,6 +49,7 @@ class AddAccomodationForm extends React.Component {
     submitForm = (event) => {
         event.preventDefault();
         const url = 'https://api-festit.herokuapp.com/api/accomodation';
+        const newID = this.state.getId[this.state.getId.length - 1] && this.state.getId[this.state.getId.length - 1].idaccomodation + 10;
         axios.post(url, this.state.inputs)
             .then(res => res.data)
             .then(res => {
@@ -47,20 +58,24 @@ class AddAccomodationForm extends React.Component {
             .catch(event => {
                 alert(`Erreur lors de l'ajout de l'hébergement : ${event.message}`);
             });
+        //Jointure avec le ou les festivals
+        const {festivalschecked} = this.form;
+        const checkboxArray = Array.prototype.slice.call(festivalschecked);
+        const checkedCheckboxes = checkboxArray.filter(input => input.checked);
+        const checkedCheckboxesValues = checkedCheckboxes.map(input => input.value);
+        console.log(checkedCheckboxesValues);
+        console.log('checked array values:', checkedCheckboxesValues);
+        const urlPut = checkedCheckboxesValues.map(item => 
+            `https://api-festit.herokuapp.com/api/festival/${item}/accomodations/${newID}`);
+        console.log(urlPut);
+        for (let i = 0; i < urlPut.length; i++) {
+            axios.post(urlPut[i])
+            .then(res => res.data)
+            .catch(event => {
+                alert(`Erreur lors de la modification de l'artiste : ${event.message}`);
+            });
+        }
     }
-
-    // submitForm = (event) => {
-    //     event.preventDefault();
-    //     const url = 'https://api-festit.herokuapp.com/api/accomodation';
-    //     axios.post(url, this.state)
-    //         .then(res => res.data)
-    //         .then(res => {
-    //             alert(`L'hébergement ${this.state.nameAccomodation} a bien été ajouté !`);
-    //         })
-    //         .catch(event => {
-    //             alert(`Erreur lors de l'ajout de l'hébergement : ${event.message}`);
-    //         });
-    // }
     
     handleShow = () => {
         this.setState({ show: true });
@@ -87,7 +102,7 @@ class AddAccomodationForm extends React.Component {
                 <Link to="/accomodations"><ButtonReturn /></Link>
             </div>
             <div className="container ContainerBody">
-                <form onSubmit={this.submitForm}>
+                <form onSubmit={this.submitForm} ref={form => this.form = form}>
                     <div className="form-row">
                         <div className="form-group col-md-6">
                             <label htmlFor="nameAccomodation">Nom de l'hébergement</label>
@@ -223,6 +238,12 @@ class AddAccomodationForm extends React.Component {
                         value={this.state.inputs.value}
                         >
                         </textarea>
+                    </div>
+                    <div>
+                        <p>Lier cet hébergement à un ou plusieurs festival</p>
+                    </div>
+                    <div className="Checkbox mb-3">
+                        <FestivalCheckbox/>
                     </div>
                     <p className="mandatory">Tous les champs ci-dessus sont obligatoires</p>
                     <div className="form-group">
