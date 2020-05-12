@@ -5,6 +5,7 @@ import StyleItem from './StyleItem';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
+import FestivalCheckbox from './FestivalCheckbox';
 
 class AddArtistForm extends React.Component {
     constructor(props) {
@@ -19,8 +20,20 @@ class AddArtistForm extends React.Component {
                 country: '',
                 id_style: '',
                 embed_video: ''
-            }
+            },
+            getId: []
         }
+    }
+
+    componentDidMount = () => {
+        axios.get('https://api-festit.herokuapp.com/api/artists')
+        .then(response => response.data)
+        .then(data => {
+            this.setState({ getId: data })
+        });
+        const lastId = this.state.getId[this.state.getId.length - 1];
+        console.log(this.state.getId, "getID");
+        console.log(lastId, "lastID");
     }
 
     onChange = (event) => {
@@ -31,13 +44,32 @@ class AddArtistForm extends React.Component {
     submitForm = (event) => {
         event.preventDefault();
         const url = 'https://api-festit.herokuapp.com/api/artists';
+        const newID = this.state.getId[this.state.getId.length - 1] && this.state.getId[this.state.getId.length - 1].idartist + 10;
         axios.post(url, this.state.inputs)
             .then(res => res.data)
             .then(res => {
+
             })
             .catch(event => {
                 alert(`Erreur lors de l'ajout de l'artiste : ${event.message}`);
             });
+        //Jointure avec le ou les festivals
+        const {festivalschecked} = this.form;
+        const checkboxArray = Array.prototype.slice.call(festivalschecked);
+        const checkedCheckboxes = checkboxArray.filter(input => input.checked);
+        const checkedCheckboxesValues = checkedCheckboxes.map(input => input.value);
+        console.log(checkedCheckboxesValues);
+        console.log('checked array values:', checkedCheckboxesValues);
+        const urlPut = checkedCheckboxesValues.map(item => 
+            `https://api-festit.herokuapp.com/api/festival/${item}/artists/${newID}`);
+        console.log(urlPut);
+        for (let i = 0; i < urlPut.length; i++) {
+            axios.post(urlPut[i])
+            .then(res => res.data)
+            .catch(event => {
+                alert(`Erreur lors de la modification de l'artiste : ${event.message}`);
+            });
+        }
     }
 
     handleShow = () => {
@@ -45,7 +77,6 @@ class AddArtistForm extends React.Component {
     }
     
     render() {
-        console.log(this.state.inputs);
         return (
             <>
             <Modal size="lg" show={this.state.show} onHide={this.handleClose}>
@@ -65,7 +96,7 @@ class AddArtistForm extends React.Component {
                 <Link to="/artists"><ButtonReturn /></Link>
             </div>
             <div className="container ContainerBody">
-                <form onSubmit={this.submitForm}>
+                <form onSubmit={this.submitForm} ref={form => this.form = form}>
                     <div className="form-row">
                         <div className="form-group col-md-6">
                             <label htmlFor="name">Nom</label>
@@ -139,6 +170,9 @@ class AddArtistForm extends React.Component {
                         value={this.state.inputs.value}
                         >
                         </textarea>
+                    </div>
+                    <div className="Checkbox mb-3">
+                        <FestivalCheckbox/>
                     </div>
                     <p className="mandatory">Tous les champs ci-dessus sont obligatoires</p>
                     <div className="col-sm-4 offset-sm-4">

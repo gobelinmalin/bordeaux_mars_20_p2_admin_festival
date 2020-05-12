@@ -81,7 +81,7 @@ class JoinArtist extends React.Component {
             </div>
             <div className="container ContainerBody">
                 <form ref={form => this.form = form} onSubmit={this.handleCheckbox}>
-                <div className="Checkbox mb-3">
+                    <div className="Checkbox mb-3">
                         <FestivalCheckbox/>
                     </div>
                     <div className="col-sm-4 offset-sm-4">
