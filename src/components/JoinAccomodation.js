@@ -11,48 +11,22 @@ class JoinAccomodation extends React.Component {
         super(props);
         this.state = {
             inputs: {
-                namePackage: '',
                 nameAccomodation: '',
-                passPrice: '',
-                priceByNight: '',
-                price: '',
-                date: '',
-                hour: '',
-                image1: '',
-                image2: '',
-                image3: '',
-                image4: '',
-                numberPlace: '',
-                km: '',
-                placeAvailable: '',
-                airbnb: false,
-                description: ''
             }
         }
     }
 
-    componentDidMount() {        
-        const params = this.props.match.params;
-        axios.get(`https://api-festit.herokuapp.com/api/accomodation/${Number(params.idaccomodation)}`)
-        .then(response => response.data)
-        .then(data => {
-            this.setState({ inputs: data[0] });
-        })
-    }
-
     handleCheckbox = (e) => {
         e.preventDefault();
+        const params = this.props.match.params;
         const {festivalschecked} = this.form;
         const checkboxArray = Array.prototype.slice.call(festivalschecked);
         const checkedCheckboxes = checkboxArray.filter(input => input.checked);
         const checkedCheckboxesValues = checkedCheckboxes.map(input => input.value);
         console.log('checked array values:', checkedCheckboxesValues);
         const urlPut = checkedCheckboxesValues.map(item => 
-            `https://api-festit.herokuapp.com/api/festival/${item}/accomodations/${this.state.inputs.idaccomodation}`);
+            `https://api-festit.herokuapp.com/api/festival/${item}/accomodations/${Number(params.idaccomodation)}`);
         console.log(urlPut);
-        const axiosPut = urlPut.map(item => 
-            `axios.put(${item})`);
-        console.log(axiosPut);
         for (let i = 0; i < urlPut.length; i++) {
             axios.post(urlPut[i])
             .then(res => res.data)
@@ -76,7 +50,7 @@ class JoinAccomodation extends React.Component {
                 </Modal.Header>
                 <Modal.Body>L'hébergement est maintenant associé à un ou plusieurs festivals.</Modal.Body>
                 <Modal.Footer>
-                <Link to="/artists"><button
+                <Link to="/accomodations"><button
                     className="ButtonAction Cancel"
                     >
                     Ok
@@ -85,7 +59,7 @@ class JoinAccomodation extends React.Component {
             </Modal>
             <div className="container ActionBloc">
                 <p className="title">Lier {this.state.inputs.nameAccomodation} à un ou plusieurs festivals</p>
-                <Link to="/artists"><ButtonReturn /></Link>
+                <Link to="/accomodations"><ButtonReturn /></Link>
             </div>
             <div className="container ContainerBody">
                 <form ref={form => this.form = form} onSubmit={this.handleCheckbox}>
@@ -93,7 +67,7 @@ class JoinAccomodation extends React.Component {
                         <FestivalCheckbox/>
                     </div>
                     <div className="col-sm-4 offset-sm-4">
-                        <button type="submit" className="SaveForm ButtonAction" onClick={this.handleShow}>Check</button>
+                        <button type="submit" className="SaveForm ButtonAction" onClick={this.handleShow}>Lier</button>
                     </div>
                 </form>
             </div>

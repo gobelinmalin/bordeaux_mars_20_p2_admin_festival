@@ -42,9 +42,6 @@ class JoinArtist extends React.Component {
         const urlPut = checkedCheckboxesValues.map(item => 
             `https://api-festit.herokuapp.com/api/festival/${item}/artists/${this.state.inputs.idartist}`);
         console.log(urlPut);
-        const axiosPut = urlPut.map(item => 
-            `axios.put(${item})`);
-        console.log(axiosPut);
         for (let i = 0; i < urlPut.length; i++) {
             axios.post(urlPut[i])
             .then(res => res.data)
