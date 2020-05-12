@@ -20,8 +20,8 @@ class FestivalCheckbox extends React.Component {
     render() {
         const { festivals } = this.state;
         return festivals.map((festival, index) => 
-            <div>
-                <input key={index} type="checkbox" ref="check_me" className="form-check-input" value={festival.idfestival} id={festival.name} name="festivalschecked"/>
+            <div key={index}>
+                <input type="checkbox" ref="check_me" className="form-check-input" value={festival.idfestival} id={festival.name} name="festivalschecked"/>
                 <label htmlFor={festival.name} className="form-check-label">{festival.name}</label>
             </div>
         )

@@ -66,12 +66,6 @@ h2 {
     color: #000;
 }
 
-@media screen and (max-width: 770px) {
-    .navbar .container {
-        justify-content: center !important;
-    }
-}
-
 /* CONTENT */
 
 .ActionCenter {
@@ -210,20 +204,6 @@ h3 {
     object-fit: cover;
 }
 
-@media screen and (max-width: 992px) {
-    .InfoUp {
-        flex-direction: column !important;
-        margin-bottom: 15px;
-        text-align: center;
-    }
-    .buttons {
-        text-align: center;
-    }
-    .Description {
-        text-align: center;
-    }
-}
-
 /* SKELETONS */
 
 .ContainerSkeleton {
@@ -267,4 +247,47 @@ h3 {
     height: 70px;
     background-color: #E7EDF1;
     border-radius: 50%;
+}
+
+@media screen and (max-width: 992px) {
+    .InfoUp {
+        flex-direction: column-reverse;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    .buttons {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    .Description {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .ActionBloc {
+        display: flex;
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+    .ButtonReturn {
+        margin-bottom: 15px;
+    }
+    .ActionCenter {
+        flex-direction: column;
+    }
+    .ActionCenter a {
+        margin-bottom: 20px;
+    }
+    .navbar .container {
+        justify-content: center !important;
+    }
+    .AddFestival {
+        display: flex;
+        flex-direction: column;
+    }
+    .Checkbox {
+        flex-direction: column;
+        margin-left: 50px;
+    }
 }
