@@ -5,7 +5,7 @@ import ButtonAction from './Buttons/ButtonAction';
 import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
 
-class FestivalItem extends React.Component {
+class AccomodationItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -13,13 +13,13 @@ class FestivalItem extends React.Component {
         }
     }
     deleteEvent = () => {
-        axios.delete(`https://api-festit.herokuapp.com/api/festival/${this.props.idfestival}`)
+        axios.delete(`https://api-festit.herokuapp.com/api/accomodation/${this.props.idaccomodation}`)
         .then(response => {
-            //alert(`Le festival ${this.props.name} a bien été supprimé`);
+            //alert(`L'hébergement ${this.props.nameAccomodation} a bien été supprimé`);
             this.refreshPage();
           })
           .catch(err => {
-            alert(`Erreur lors de la suppression du festival : ${err.message}`);
+            alert(`Erreur lors de la suppression de l'hébergement : ${err.message}`);
           });
     }
 
@@ -40,9 +40,9 @@ class FestivalItem extends React.Component {
             <>
             <Modal size="lg" show={this.state.show} onHide={this.handleClose}>
                 <Modal.Header closeButton>
-                <Modal.Title>Supprimer le festival {this.props.name}</Modal.Title>
+                <Modal.Title>Supprimer le logement {this.props.nameAccomodation}</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Êtes-vous sûr de vouloir supprimer ce festival ?</Modal.Body>
+                <Modal.Body>Êtes-vous sûr de vouloir supprimer cet hébergement ?</Modal.Body>
                 <Modal.Footer>
                 <button className="ButtonAction Cancel" onClick={this.handleClose}>
                     Annuler
@@ -55,29 +55,32 @@ class FestivalItem extends React.Component {
                 </button>
                 </Modal.Footer>
             </Modal>
-            
+
             <div className="container">
                 <div className="Card">
                     <div className="InfoUp">
-                        <div className="col-md-8">
+                        <div className="col-md-1">
+                            <img src={this.props.image1} className="img-round" alt={this.props.nameAccomodation}/>
+                        </div>
+                        <div className="col-md-6">
                             <div>
-                                <h3>{this.props.name} <span className="IdItem">{`(id : ${this.props.idfestival})`}</span></h3>
+                                <h3>{this.props.nameAccomodation} <span className="IdItem">{`(id : ${this.props.idaccomodation})`}</span></h3>
                             </div>
                             <div>
-                                <p>{`Du ${this.props.startDate} au ${this.props.endDate} à ${this.props.city}, ${this.props.country}`}</p>
+                                <p>{this.props.soldOut ? "Sold Out" : "Disponible"} | Prix avec Pass : {this.props.passPrice}€ | Prix par nuit : {this.props.priceByNight}€</p>
                             </div>
                         </div>
-                        <div className="buttons col-md-4">
-                            <Link to={`/update-festival/${this.props.idfestival}`}><ButtonAction name="Modifier" class="Update"/></Link>
+                        <div className="buttons col-md-5">
+                            <Link to={`/join-accomodation/${this.props.idaccomodation}`}><ButtonAction name="Lier" class="Cancel"/></Link>
+                            <Link to={`/update-accomodation/${this.props.idaccomodation}`}><ButtonAction name="Modifier" class="Update"/></Link>
                             <button onClick={this.handleShow} className="Delete ButtonAction"> 
                                 Supprimer
                             </button>
                         </div>
                     </div>
                     <div className="Description col-md-12">
-                        <p>
-                            {this.props.description}
-                        </p>
+                        <p>Logement disponible à partir du {this.props.date} à {this.props.hour}</p>
+                        <p>Nombre de place : {this.props.numberPlace} | Places encore disponibles : {this.props.placeAvailable}</p>
                     </div>
                 </div>
             </div>
@@ -86,4 +89,4 @@ class FestivalItem extends React.Component {
     }
 }
 
-export default FestivalItem;
+export default AccomodationItem;

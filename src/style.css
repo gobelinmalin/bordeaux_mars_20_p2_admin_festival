@@ -66,54 +66,120 @@ h2 {
     color: #000;
 }
 
-@media screen and (max-width: 770px) {
-    .navbar .container {
-        justify-content: center !important;
-    }
+/* CONTENT */
+
+.ActionCenter {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 50px 0px;
+}
+
+.ActionBloc {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 1.5rem;
+}
+
+.mandatory {
+    font-size: 1rem;
+    font-style: italic;
+    color: red;
+}
+
+.CenteredItem {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.Checkbox {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* CARDS */
+
+.Card {
+    border-bottom: 2px solid rgb(230, 224, 224);
+    margin: 15px 0px;
+}
+
+.InfoUp {
+    display: flex;
+    flex-direction: row;
+}
+
+.IdItem {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+h3 {
+    font-weight: 700;
 }
 
 /* BUTTONS */
 
-.ButtonAddFest {
+.buttons {
+    text-align: right;
+}
+
+.ButtonAction {
+    text-align: center;
+    color: #fff;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 10px;
+    margin: 0px 10px;
+}
+
+.Update {
+    background-color: #F1B155;
+}
+.Update:hover {
+    background-color: rgb(207, 146, 60);
+}
+
+.Delete {
+    background-color: #E44F55;
+}
+.Delete:hover {
+    background-color: rgb(190, 52, 57);
+}
+
+.Action {
+    background-color: #9185BE;
+}
+.Action:hover {
+    background-color: rgb(114, 100, 165);
+}
+
+.Cancel {
+    background-color: #FFF;
+    border: 1px solid #000;
+    color: #000;
+}
+
+.Cancel:hover {
+    background-color: #EDEEF3;
+}
+
+.SaveForm {
     text-align: center;
     background-color: #9185BE;
     color: #fff;
-    margin: 50px 0px;
+    margin: 20px 0px;
     padding: 15px 25px;
     border: none;
     border-radius: 10px;
     width: 100%;
-}
-
-.ButtonAddFest:hover {
-    background-color: rgb(114, 100, 165);
-}
-
-.ButtonUpdate {
-    text-align: center;
-    background-color: #F1B155;
-    color: #fff;
-    margin-right: 15px;
-    padding: 15px 25px;
-    border: none;
-    border-radius: 10px;
-}
-
-.ButtonUpdate:hover {
-    background-color: rgb(207, 146, 60);
-}
-
-.ButtonDelete {
-    text-align: center;
-    background-color: #E44F55;
-    color: #fff;
-    padding: 15px 25px;
-    border: none;
-    border-radius: 10px;
-}
-
-.ButtonDelete:hover {
-    background-color: rgb(190, 52, 57);
 }
 
 .ButtonReturn {
@@ -125,13 +191,8 @@ h2 {
     border-radius: 10px;
     font-size: 1rem;
 }
-
-.Action {
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-top: 50px;
+.ButtonReturn:hover {
+    background-color: rgb(245, 240, 240);
 }
 
 /* IMAGE */
@@ -143,10 +204,90 @@ h2 {
     object-fit: cover;
 }
 
+/* SKELETONS */
+
+.ContainerSkeleton {
+    background-color: #fff;
+    padding: 20px 0px;
+    border-bottom: 2px solid #E7EDF1;
+}
+
+.H1Skeleton {
+    height: 20px;
+    width: 30%;
+    background-color: #E7EDF1;
+    border-radius: 5px;
+    margin: 15px 0px;
+}
+
+.H2Skeleton {
+    height: 20px;
+    width: 40%;
+    background-color: #E7EDF1;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.PSkeleton {
+    height: 50px;
+    width: 100%;
+    background-color: #E7EDF1;
+    border-radius: 5px;
+}
+
+.P2Skeleton {
+    height: 20px;
+    width: 100%;
+    background-color: #E7EDF1;
+    border-radius: 5px;
+}
+
+.ImgSkeleton {
+    width: 70px;
+    height: 70px;
+    background-color: #E7EDF1;
+    border-radius: 50%;
+}
+
 @media screen and (max-width: 992px) {
-    .FestInfoUp {
-        flex-direction: column !important;
+    .InfoUp {
+        flex-direction: column-reverse;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    .buttons {
+        text-align: center;
         margin-bottom: 15px;
     }
-    
+    .Description {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .ActionBloc {
+        display: flex;
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+    .ButtonReturn {
+        margin-bottom: 15px;
+    }
+    .ActionCenter {
+        flex-direction: column;
+    }
+    .ActionCenter a {
+        margin-bottom: 20px;
+    }
+    .navbar .container {
+        justify-content: center !important;
+    }
+    .AddFestival {
+        display: flex;
+        flex-direction: column;
+    }
+    .Checkbox {
+        flex-direction: column;
+        margin-left: 50px;
+    }
 }

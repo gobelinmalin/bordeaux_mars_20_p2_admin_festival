@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
 
-class AddArtistForm extends React.Component {
+class UpdateArtistForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -23,6 +23,15 @@ class AddArtistForm extends React.Component {
         }
     }
 
+    componentDidMount() {        
+        const params = this.props.match.params;
+        axios.get(`https://api-festit.herokuapp.com/api/artists/id/${Number(params.idartist)}`)
+        .then(response => response.data)
+        .then(data => {
+            this.setState({ inputs: data[0] });
+        })     
+    }
+
     onChange = (event) => {
         const { inputs } = this.state;
         this.setState({ inputs : { ...inputs,  [event.target.name]: event.target.value}});
@@ -30,13 +39,12 @@ class AddArtistForm extends React.Component {
 
     submitForm = (event) => {
         event.preventDefault();
-        const url = 'https://api-festit.herokuapp.com/api/artists';
-        axios.post(url, this.state.inputs)
+        const params = this.props.match.params;
+        const url = `https://api-festit.herokuapp.com/api/artists/${params.idartist}`;
+        axios.put(url, this.state.inputs)
             .then(res => res.data)
-            .then(res => {
-            })
             .catch(event => {
-                alert(`Erreur lors de l'ajout de l'artiste : ${event.message}`);
+                alert(`Erreur lors de la modification de l'artiste : ${event.message}`);
             });
     }
 
@@ -45,13 +53,14 @@ class AddArtistForm extends React.Component {
     }
     
     render() {
-        console.log(this.state.inputs);
+        console.log(this.state.inputs, 'state');
         return (
             <>
             <Modal size="lg" show={this.state.show} onHide={this.handleClose}>
                 <Modal.Header closeButton>
-                <Modal.Title>L'artiste {this.state.inputs.name} a bien été ajouté !</Modal.Title>
+                <Modal.Title>Modifications effectuées</Modal.Title>
                 </Modal.Header>
+                <Modal.Body>Les modifications ont bien été prises en compte.</Modal.Body>
                 <Modal.Footer>
                 <Link to="/artists"><button
                     className="ButtonAction Cancel"
@@ -74,7 +83,7 @@ class AddArtistForm extends React.Component {
                             className="form-control"
                             name="name"
                             onChange={this.onChange}
-                            value={this.state.inputs.value}
+                            value={this.state.inputs.name}
                             />
                         </div>
                         <div className="form-group col-md-6">
@@ -84,7 +93,7 @@ class AddArtistForm extends React.Component {
                             className="form-control"
                             name="country"
                             onChange={this.onChange}
-                            value={this.state.inputs.value}
+                            value={this.state.inputs.country}
                             />
                         </div>
                     </div>
@@ -96,7 +105,7 @@ class AddArtistForm extends React.Component {
                         name="image_url"
                         placeholder="https://..."
                         onChange={this.onChange}
-                        value={this.state.inputs.value}
+                        value={this.state.inputs.image_url}
                         />
                     </div>
                     <div className="form-group">
@@ -107,7 +116,7 @@ class AddArtistForm extends React.Component {
                         name="music_url"
                         placeholder="https://..."
                         onChange={this.onChange}
-                        value={this.state.inputs.value}
+                        value={this.state.inputs.music_url}
                         />
                     </div>
                     <div className="form-group">
@@ -118,13 +127,15 @@ class AddArtistForm extends React.Component {
                         name="embed_video"
                         placeholder='<iframe width="560" height="315" src="..."></iframe>'
                         onChange={this.onChange}
-                        value={this.state.inputs.value}
+                        value={this.state.inputs.embed_video}
                         />
                     </div>
                     <div className="form-group">
                         <label htmlFor="id_style">ID du style de l'artiste</label>
-                        <select className="form-control" onChange={this.onChange} value={this.state.inputs.value} name="id_style">
-                            <option>Tous</option>
+                        <select 
+                        className="form-control"
+                        onChange={this.onChange}
+                        value={this.state.inputs.id_style} name="id_style">
                             <StyleItem />
                         </select>
                     </div>
@@ -136,13 +147,13 @@ class AddArtistForm extends React.Component {
                         rows="4"
                         type="text"
                         onChange={this.onChange}
-                        value={this.state.inputs.value}
+                        value={this.state.inputs.description}
                         >
                         </textarea>
                     </div>
                     <p className="mandatory">Tous les champs ci-dessus sont obligatoires</p>
                     <div className="col-sm-4 offset-sm-4">
-                        <button type="submit" onClick={this.handleShow} className="SaveForm ButtonAction">Enregistrer</button>
+                        <button type="submit" onClick={this.handleShow} className="SaveForm ButtonAction">Modifier</button>
                     </div>
                 </form>
             </div>
@@ -152,4 +163,4 @@ class AddArtistForm extends React.Component {
     
 }
 
-export default AddArtistForm;
+export default UpdateArtistForm;
