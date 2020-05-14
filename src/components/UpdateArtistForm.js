@@ -77,9 +77,6 @@ class UpdateArtistForm extends React.Component {
     }
     
     render() {
-        console.log(this.state.inputs, 'inputs');
-        console.log(this.state.checked && this.state.checked.map(item => item.idfestival), 'checked');
-        
         return (
             <>
             <Modal size="lg" show={this.state.show} onHide={this.handleClose}>
@@ -181,7 +178,7 @@ class UpdateArtistForm extends React.Component {
                         <p>Lier cet hébergement à un ou plusieurs festival</p>
                     </div>
                     <div className="Checkbox mb-3">
-                        <FestivalCheckboxUpdate checked={this.state.checked && this.state.checked.map(item => item.idfestival)}/>
+                        <FestivalCheckboxUpdate checkedArray={this.state.checked}/>
                     </div>
                     <p className="mandatory">Tous les champs ci-dessus sont obligatoires</p>
                     <div className="col-sm-4 offset-sm-4">
