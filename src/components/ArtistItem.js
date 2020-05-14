@@ -79,7 +79,7 @@ class ArtistItem extends React.Component {
                             </div>
                         </div>
                         <div className="buttons col-lg-6 col-md-12">
-                            <Link to={`/join-artist/${this.props.idartist}`}><ButtonAction name="Lier" class="Cancel"/></Link>
+                            {/* <Link to={`/join-artist/${this.props.idartist}`}><ButtonAction name="Lier" class="Cancel"/></Link> */}
                             <Link to={`/update-artist/${this.props.idartist}`}><ButtonAction name="Modifier" class="Update"/></Link>
                             <button onClick={this.handleShow} className="Delete ButtonAction"> 
                                 Supprimer

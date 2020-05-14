@@ -5,6 +5,7 @@ import StyleItem from './StyleItem';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
+import FestivalCheckboxUpdate from './FestivalCheckboxUpdate';
 
 class UpdateArtistForm extends React.Component {
     constructor(props) {
@@ -19,7 +20,8 @@ class UpdateArtistForm extends React.Component {
                 country: '',
                 id_style: '',
                 embed_video: ''
-            }
+            },
+            checked: []
         }
     }
 
@@ -29,7 +31,12 @@ class UpdateArtistForm extends React.Component {
         .then(response => response.data)
         .then(data => {
             this.setState({ inputs: data[0] });
-        })     
+        })
+        axios.get(`https://api-festit.herokuapp.com/api/artists/${Number(params.idartist)}/festival`)
+        .then(response => response.data)
+        .then(data => {
+            this.setState({ checked: data });
+        })
     }
 
     onChange = (event) => {
@@ -46,6 +53,23 @@ class UpdateArtistForm extends React.Component {
             .catch(event => {
                 alert(`Erreur lors de la modification de l'artiste : ${event.message}`);
             });
+        //Jointure avec le ou les festivals
+        const {festivalschecked} = this.form;
+        const checkboxArray = Array.prototype.slice.call(festivalschecked);
+        const checkedCheckboxes = checkboxArray.filter(input => input.checked);
+        const checkedCheckboxesValues = checkedCheckboxes.map(input => input.value);
+        console.log(checkedCheckboxesValues);
+        console.log('checked array values:', checkedCheckboxesValues);
+        const urlPut = checkedCheckboxesValues.map(item => 
+            `https://api-festit.herokuapp.com/api/festival/${item}/artists/${Number(params.idartist)}`);
+        console.log(urlPut);
+        for (let i = 0; i < urlPut.length; i++) {
+            axios.put(urlPut[i])
+            .then(res => res.data)
+            .catch(event => {
+                alert(`Erreur lors de la modification de l'artiste : ${event.message}`);
+            });
+        }
     }
 
     handleShow = () => {
@@ -53,7 +77,9 @@ class UpdateArtistForm extends React.Component {
     }
     
     render() {
-        console.log(this.state.inputs, 'state');
+        console.log(this.state.inputs, 'inputs');
+        console.log(this.state.checked && this.state.checked.map(item => item.idfestival), 'checked');
+        
         return (
             <>
             <Modal size="lg" show={this.state.show} onHide={this.handleClose}>
@@ -74,7 +100,7 @@ class UpdateArtistForm extends React.Component {
                 <Link to="/artists"><ButtonReturn /></Link>
             </div>
             <div className="container ContainerBody">
-                <form onSubmit={this.submitForm}>
+                <form onSubmit={this.submitForm} ref={form => this.form = form}>
                     <div className="form-row">
                         <div className="form-group col-md-6">
                             <label htmlFor="name">Nom</label>
@@ -150,6 +176,12 @@ class UpdateArtistForm extends React.Component {
                         value={this.state.inputs.description}
                         >
                         </textarea>
+                    </div>
+                    <div>
+                        <p>Lier cet hébergement à un ou plusieurs festival</p>
+                    </div>
+                    <div className="Checkbox mb-3">
+                        <FestivalCheckboxUpdate checked={this.state.checked && this.state.checked.map(item => item.idfestival)}/>
                     </div>
                     <p className="mandatory">Tous les champs ci-dessus sont obligatoires</p>
                     <div className="col-sm-4 offset-sm-4">

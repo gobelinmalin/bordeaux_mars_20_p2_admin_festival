@@ -17,8 +17,32 @@ class FestivalCheckbox extends React.Component {
             });
     }
 
+    handleChecked = (idFestival) => {
+        const { checked } = this.props;
+
+        let isChecked;
+            
+        checked.map(item => {
+            //console.log("puips", checked)
+            //console.log(idFestival, 'idFestival');
+            // let isTrue = idFestival === item;
+            // console.log(isTrue);
+
+            if(idFestival === item ) {
+                console.log("checks envoyé")
+                isChecked = true
+            } else {
+                isChecked = false
+            }
+            
+        })
+        return isChecked
+
+    }
+
     render() {
         const { festivals } = this.state;
+        //const { checked } = this.props;
         
         return festivals.map((festival, index) => 
             <div className="CheckBoxCase">
@@ -30,6 +54,9 @@ class FestivalCheckbox extends React.Component {
                     value={festival.idfestival} 
                     id={festival.name} 
                     name="festivalschecked"
+                    checked={this.handleChecked(festival.idfestival)}
+                    //defaultChecked={checked.map(item => festival.idfestival === item ? {checked} : "")}
+                    //{...checked.map(item => festival.idfestival === item && defaultChecked)}
                 />
                 <label htmlFor={festival.name} className="form-check-label">{festival.name}</label>
             </div>

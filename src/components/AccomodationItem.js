@@ -71,7 +71,7 @@ class AccomodationItem extends React.Component {
                             </div>
                         </div>
                         <div className="buttons col-md-5">
-                            <Link to={`/join-accomodation/${this.props.idaccomodation}`}><ButtonAction name="Lier" class="Cancel"/></Link>
+                            {/* <Link to={`/join-accomodation/${this.props.idaccomodation}`}><ButtonAction name="Lier" class="Cancel"/></Link> */}
                             <Link to={`/update-accomodation/${this.props.idaccomodation}`}><ButtonAction name="Modifier" class="Update"/></Link>
                             <button onClick={this.handleShow} className="Delete ButtonAction"> 
                                 Supprimer
